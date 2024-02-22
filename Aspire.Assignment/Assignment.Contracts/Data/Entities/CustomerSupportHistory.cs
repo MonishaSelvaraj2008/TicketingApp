@@ -28,7 +28,6 @@ public class CustomerSupportHistory : BaseEntity
     public string Comments { get; set; }
 
     public CustomerSupport CustomerSupport { get; set; }
-    
 
  
 }

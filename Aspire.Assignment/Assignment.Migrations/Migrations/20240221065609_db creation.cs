@@ -17,8 +17,7 @@ namespace Assignment.Migrations.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    State = table.Column<string>(type: "varchar(50)", nullable: true),
-                    AddedOn = table.Column<DateTime>(type: "datetime", nullable: false)
+                    State = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,7 +25,7 @@ namespace Assignment.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -40,7 +39,7 @@ namespace Assignment.Migrations.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,15 +71,15 @@ namespace Assignment.Migrations.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Bug_User_CreatedBy",
+                        name: "FK_Bug_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Bug_User_Responsible",
+                        name: "FK_Bug_Users_Responsible",
                         column: x => x.Responsible,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -110,15 +109,15 @@ namespace Assignment.Migrations.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_CustomerSupport_User_CreatedBy",
+                        name: "FK_CustomerSupport_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_CustomerSupport_User_Responsible",
+                        name: "FK_CustomerSupport_Users_Responsible",
                         column: x => x.Responsible,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -149,15 +148,15 @@ namespace Assignment.Migrations.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_UserStory_User_CreatedBy",
+                        name: "FK_UserStory_Users_CreatedBy",
                         column: x => x.CreatedBy,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_UserStory_User_Responsible",
+                        name: "FK_UserStory_Users_Responsible",
                         column: x => x.Responsible,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -231,11 +230,11 @@ namespace Assignment.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_CustomerSupportHistory", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CustomerSupportHistory_CustomerSupport_CustomerSupportId",
+                        name: "_CustomerSupportHistory_CustomerSupport_CustomerSupportId",
                         column: x => x.CustomerSupportId,
                         principalTable: "CustomerSupport",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -245,7 +244,7 @@ namespace Assignment.Migrations.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserStoryId = table.Column<int>(type: "int", nullable: false),
-                    Responsible = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Responsible = table.Column<int>(type: "int", nullable: false),
                     StoryPoint = table.Column<int>(type: "int", nullable: false),
                     AcceptanceCriteria = table.Column<string>(type: "varchar(250)", nullable: true),
                     Description = table.Column<string>(type: "varchar(250)", nullable: true),
@@ -359,7 +358,7 @@ namespace Assignment.Migrations.Migrations
                 name: "Status");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

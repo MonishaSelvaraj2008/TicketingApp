@@ -6,6 +6,7 @@ using FluentValidation;
 using System.Text.Json;
 using Assignment.Core.Exceptions;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
 
 namespace Assignment.Core.Handlers.Commands
 {
@@ -14,18 +15,19 @@ namespace Assignment.Core.Handlers.Commands
         private readonly IUnitOfWork _repository;
         private readonly IValidator<CreateUserStoryDTO> _validator;
 
-        public CreateUserStoryCommandHandler(IUnitOfWork repository, IValidator<CreateUserStoryDTO> validator)
+        private readonly IMapper _mapper;
+
+        public CreateUserStoryCommandHandler(IUnitOfWork repository, IValidator<CreateUserStoryDTO> validator, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
             _validator = validator;
         }
 
         public async Task<int> Handle(CreateUserStoryCommand request, CancellationToken cancellationToken)
         {
-            CreateUserStoryDTO model = request.Model;
-
-            var result = _validator.Validate(model);
-
+            var userStory = request.Model;
+            var result = _validator.Validate(userStory);
             if (!result.IsValid)
             {
                 var errors = result.Errors.Select(x => x.ErrorMessage).ToArray();
@@ -34,23 +36,11 @@ namespace Assignment.Core.Handlers.Commands
                     Errors = errors
                 };
             }
-            
-            var entity = new UserStory
-            {
-                Description = model.Description,
-                AcceptanceCriteria = model. AcceptanceCriteria,
-                StoryPoint = model.StoryPoint,
-                Version = 1,
-                Comments = model.Comments,
-                Responsible = model.Responsible,
-                StatusId=model.StatusId,
-                CreatedBy=model.CreatedBy
-            };
-
-
+            var entity = _mapper.Map<UserStory>(userStory);
+            entity.Version=1;
+            entity.StatusId=1;
             _repository.UserStory.Add(entity);
             await _repository.CommitAsync();
-
             return entity.Id;
         }
     }

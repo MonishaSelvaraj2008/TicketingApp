@@ -11,10 +11,7 @@ namespace Assignment.Core.Handlers.Commands
 {
     public class CreateUserStoryCommand : IRequest<int>
     {
-        public CreateUserStoryDTO Model { get; }
-        public CreateUserStoryCommand(CreateUserStoryDTO model)
-        {
-            this.Model = model;
-        }
+        public CreateUserStoryDTO? Model { get; set;}
+
     }
 }

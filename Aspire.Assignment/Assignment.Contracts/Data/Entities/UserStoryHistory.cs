@@ -13,8 +13,8 @@ public class UserStoryHistory : BaseEntity
     [ForeignKey("UserStory")]
     public int UserStoryId {get;set;}
 
-    [Column(TypeName = "varchar(50)" )]
-     public string Responsible { get; set;}    
+    [Column(TypeName = "int" )]
+     public int Responsible { get; set;}    
 
     [Required]
     [Column(TypeName = "int")]

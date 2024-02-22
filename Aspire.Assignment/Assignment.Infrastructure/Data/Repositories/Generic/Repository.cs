@@ -44,6 +44,7 @@ namespace Assignment.Core.Data.Repositories
             return x;
         }
 
+
         public IEnumerable<T> GetAll()
         {
             return _dbSet.AsEnumerable();

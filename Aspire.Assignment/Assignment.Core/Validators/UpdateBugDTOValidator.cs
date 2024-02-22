@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Assignment.Core.Validators
 {
-    public class UpdateUserStoryDTOValidator : AbstractValidator<UpdateUserStoryDTO>
+    public class UpdateBugDTOValidator : AbstractValidator<UpdateBugDTO>
     {
-        public UpdateUserStoryDTOValidator()
+        public UpdateBugDTOValidator()
         {
             RuleFor(x => x.StatusId).NotEmpty().NotNull().WithMessage("Status is required");
             RuleFor(x => x.Id).NotEmpty().NotNull().WithMessage("Id is required");

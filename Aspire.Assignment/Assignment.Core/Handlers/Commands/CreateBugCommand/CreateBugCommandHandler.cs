@@ -6,6 +6,7 @@ using FluentValidation;
 using System.Text.Json;
 using Assignment.Core.Exceptions;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
 
 namespace Assignment.Core.Handlers.Commands
 {
@@ -14,18 +15,19 @@ namespace Assignment.Core.Handlers.Commands
         private readonly IUnitOfWork _repository;
         private readonly IValidator<CreateBugDTO> _validator;
 
-        public CreateBugCommandHandler(IUnitOfWork repository, IValidator<CreateBugDTO> validator)
+        private readonly IMapper _mapper;
+
+        public CreateBugCommandHandler(IUnitOfWork repository, IValidator<CreateBugDTO> validator, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
             _validator = validator;
         }
 
         public async Task<int> Handle(CreateBugCommand request, CancellationToken cancellationToken)
         {
-            CreateBugDTO model = request.Model;
-
-            var result = _validator.Validate(model);
-
+            var bug = request.Model;
+            var result = _validator.Validate(bug);
             if (!result.IsValid)
             {
                 var errors = result.Errors.Select(x => x.ErrorMessage).ToArray();
@@ -34,25 +36,11 @@ namespace Assignment.Core.Handlers.Commands
                     Errors = errors
                 };
             }
-            
-            var entity = new Bug
-            {
-                Description = model.Description,
-                Environment = model.Environment,
-                Priority = model. Priority ,
-                Responsible =  model.Responsible,
-                Regression = model.Regression,
-                FixedID = model.FixedID,
-                NotFixedReason = model.NotFixedReason,
-                Version = 1,
-                Comments = model.Comments,
-                StatusId = model.StatusId,
-                CreatedBy = model.CreatedBy,
-            };
-
+            var entity = _mapper.Map<Bug>(bug);
+            entity.Version=1;
+            entity.StatusId=1;
             _repository.Bug.Add(entity);
             await _repository.CommitAsync();
-
             return entity.Id;
         }
     }
