@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Assignment.Core.Handlers.Commands
 {
-    public class CreateBugCommand : IRequest<int>
+    public class UpdateBugCommand : IRequest<int>
     {
-        public CreateBugDTO? Model { get; set;}
-
+        public UpdateBugDTO? Model { get; set;}
+    
     }
 }

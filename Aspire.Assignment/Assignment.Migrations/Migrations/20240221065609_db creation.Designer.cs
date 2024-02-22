@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment.Migrations.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240220103607_db creation")]
+    [Migration("20240221065609_db creation")]
     partial class dbcreation
     {
         /// <inheritdoc />
@@ -191,9 +191,6 @@ namespace Assignment.Migrations.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("AddedOn")
-                        .HasColumnType("datetime");
-
                     b.Property<string>("State")
                         .HasColumnType("varchar(50)");
 
@@ -231,7 +228,7 @@ namespace Assignment.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Assignment.Contracts.Data.Entities.UserStory", b =>
@@ -300,8 +297,8 @@ namespace Assignment.Migrations.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("varchar(250)");
 
-                    b.Property<string>("Responsible")
-                        .HasColumnType("varchar(50)");
+                    b.Property<int>("Responsible")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");

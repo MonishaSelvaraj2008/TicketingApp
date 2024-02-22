@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment.Contracts.Data.Entities;
 using Assignment.Contracts.DTO;
 using Assignment.Core.Exceptions;
 using Assignment.Core.Handlers.Commands;
@@ -15,10 +17,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Http;
-using Assignment.Core.Exceptions;
-
-
 
 namespace Assignment.Controllers
 {
@@ -35,14 +33,13 @@ namespace Assignment.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<UserStoryDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<UserStory>), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetUserStory()
+        public async Task<IActionResult> GetUserStoryByUserId([FromQuery]GetUserStoryByUserIdQuery getUserStoryByUserIdQuery)
         {
             try
             {
-                var query = new GetUserStoryQuery();
-                var response = await _mediator.Send(query);
+                var response = await _mediator.Send(getUserStoryByUserIdQuery);
                 return Ok(response);
             }
             catch (EntityNotFoundException ex)
@@ -55,15 +52,14 @@ namespace Assignment.Controllers
             }
         }
 
-        [HttpGet("Id")]
+        [HttpGet("UserId")]
         [ProducesResponseType(typeof(UserStoryDTO), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetUserStoryById(int UserStoryId)
+        public async Task<IActionResult> GetUserStoryById([FromQuery] GetUserStoryByIdQuery getUserStoryByIdQuery)
         {
             try
             {
-                var query = new GetUserStoryByIdQuery(UserStoryId);
-                var response = await _mediator.Send(query);
+                var response = await _mediator.Send(getUserStoryByIdQuery);
                 return Ok(response);
             }
             catch (EntityNotFoundException ex)
@@ -79,12 +75,11 @@ namespace Assignment.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> CreateUserStory([FromBody] CreateUserStoryDTO createUserStoryDTO)
+        public async Task<IActionResult> CreateUserStory([FromBody] CreateUserStoryCommand createUserStoryCommand)
         {
             try
             {
-                var command = new CreateUserStoryCommand(createUserStoryDTO);
-                var response = await _mediator.Send(command);
+                var response = await _mediator.Send(createUserStoryCommand);
                 return StatusCode((int)HttpStatusCode.Created, response);
             }
             catch (InvalidRequestBodyException ex)
@@ -97,18 +92,15 @@ namespace Assignment.Controllers
             }
         }
 
-        [HttpPut("{Id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPut]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> UpdateUserStory(int id, [FromBody] UpdateUserStoryDTO updateUserStoryDTO)
+        public async Task<IActionResult> UpdateUserStory([FromBody] UpdateUserStoryCommand updateUserStoryCommand)
         {
             try
             {
-                updateUserStoryDTO.Id = id; 
-                var command = new UpdateUserStoryCommand(updateUserStoryDTO);
-                await _mediator.Send(command);
-                return NoContent(); 
+                var response = await _mediator.Send(updateUserStoryCommand);
+                return StatusCode((int)HttpStatusCode.Created, response);
             }
             catch (InvalidRequestBodyException ex)
             {
@@ -119,7 +111,6 @@ namespace Assignment.Controllers
                 });
             }
         }
-
 
     }
 }

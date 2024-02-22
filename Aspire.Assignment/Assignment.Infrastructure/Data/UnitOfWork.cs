@@ -15,8 +15,12 @@ namespace Assignment.Core.Data
             _context = context;
         }
         public IBugRepository Bug => new BugRepository(_context);
+
+        public IBugHistoryRepository BugHistory => new BugHistoryRepository(_context);
         
-         public IUserStoryRepository UserStory => new UserStoryRepository(_context);
+        public IUserStoryRepository UserStory => new UserStoryRepository(_context);
+
+        public IUserStoryHistoryRepository UserStoryHistory => new UserStoryHistoryRepository(_context);
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();

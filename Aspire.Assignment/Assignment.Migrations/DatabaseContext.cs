@@ -21,10 +21,10 @@ namespace Assignment.Migrations
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<User> UserStory { get; set; }
-        public DbSet<User> Bug { get; set; }
-        public DbSet<User> CustomerSupport { get; set; }
-        public DbSet<User> CustomerDetails { get; set; }
+        public DbSet<UserStory> UserStory { get; set; }
+        public DbSet<Bug> Bug { get; set; }
+        public DbSet<CustomerSupport> CustomerSupport { get; set; }
+        public DbSet<CustomerDetails> CustomerDetails { get; set; }
         
         public DbSet<UserStoryHistory> UserStoryHistory { get; set; }
          public DbSet<BugHistory> BugHistory { get; set; }

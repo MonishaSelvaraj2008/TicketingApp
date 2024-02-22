@@ -8,9 +8,6 @@ namespace Assignment.Core.Handlers.Queries
 {
     public class GetBugByIdQuery : IRequest<BugDTO>
     {
-        public int BugId{get;}
-        public GetBugByIdQuery(int BugId){
-            this.BugId = BugId;
-        }
+        public int BugId{get; set;}
     }
 }

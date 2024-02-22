@@ -4,7 +4,7 @@ using Assignment.Contracts.Data.Entities;
 namespace Assignment.Contracts.Data.Entities
 {
 
-public class Status :BaseEntity
+public class Status 
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
