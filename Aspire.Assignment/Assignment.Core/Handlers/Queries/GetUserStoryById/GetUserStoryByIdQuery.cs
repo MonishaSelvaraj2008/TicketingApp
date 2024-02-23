@@ -8,9 +8,6 @@ namespace Assignment.Core.Handlers.Queries
 {
     public class GetUserStoryByIdQuery : IRequest<UserStoryDTO>
     {
-        public int UserStoryId{get;}
-        public GetUserStoryByIdQuery(int UserStoryId){
-            this.UserStoryId = UserStoryId;
-        }
+        public int UserStoryId{get; set;}
     }
 }

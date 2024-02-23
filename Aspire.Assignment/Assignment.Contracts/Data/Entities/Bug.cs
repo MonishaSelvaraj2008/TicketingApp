@@ -42,8 +42,8 @@ public class Bug : BaseEntity
  
     [Column(TypeName = "varchar(250)")]
     public string Comments { get; set; }
-    // public User User { get; set; }
-    // public User user{get;set;}
-    // public Status Status { get; set; }
+    public User User { get; set; }
+    public User user{get;set;}
+    public Status Status { get; set; }
  
 }
