@@ -26,6 +26,8 @@ public class CustomerSupportHistory : BaseEntity
  
     [Column(TypeName = "varchar(250)")]
     public string Comments { get; set; }
+    [Column(TypeName = "int")]
+    public int StatusId { get; set; }
 
     public CustomerSupport CustomerSupport { get; set; }
 

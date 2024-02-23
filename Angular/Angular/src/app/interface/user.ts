@@ -9,7 +9,4 @@ export interface User {
     Mobile: bigint;
     Email: string;
     Password: string;
-    UserStories?: UserStory[];
-    Bugs?: Bug[];
-    CustomerSupports?: CustomerSupport[];
-  }
+}

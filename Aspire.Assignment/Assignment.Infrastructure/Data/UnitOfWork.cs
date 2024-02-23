@@ -17,6 +17,8 @@ namespace Assignment.Core.Data
         public IBugRepository Bug => new BugRepository(_context);
 
         public IBugHistoryRepository BugHistory => new BugHistoryRepository(_context);
+        public ICustomerSupportRepository CustomerSupport => new CustomerSupportRepository(_context);
+        public ICustomerSupportHistoryRepository CustomerSupportHistory => new CustomerSupportHistoryRepository(_context);
         
         public IUserStoryRepository UserStory => new UserStoryRepository(_context);
 

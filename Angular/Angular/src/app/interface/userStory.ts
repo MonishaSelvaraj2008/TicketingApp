@@ -1,9 +1,9 @@
 import { Status } from "./status";
 import { User } from "./user";
 
-export interface UserStory {
+export interface UserStory : BaseEntity {
     Id: number;
-    Responsible: string;
+    Responsible: number;
     StoryPoint: number;
     AcceptanceCriteria: string;
     Description: string;
@@ -12,8 +12,6 @@ export interface UserStory {
     Version: number;
     Comments: string;
     AddedOn: string;
-    User?: User;
-    Status?: Status;
   }
   
  
