@@ -1,15 +1,12 @@
 export interface Bug {
-    Id: number;
-    Description: string;
-    Environment: string;
-    Priority: number;
-    Responsible: number;
-    Regression: boolean;
-    FixedID: string;
-    NotFixedReason: string;
-    CreatedBy: number;
-    StatusId: number;
-    Version: number;
-    Comments: string;
-  }
+    description: string;
+    environment: string;
+    priority: number;
+    responsible: number;
+    regression: boolean;
+    fixedID: string;
+    notFixedReason: string;
+    comments: string;
+    createdBy: number;
+}
   

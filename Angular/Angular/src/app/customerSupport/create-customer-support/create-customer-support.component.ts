@@ -20,11 +20,9 @@ export class CreateCustomerSupportComponent implements OnInit {
   ngOnInit() {
     this.customerSupportForm = this.fb.group({
       responsible: ['', Validators.required],
-      CustomerId:['',Validators.required],
+      customerId:['',Validators.required],
       details: [''],
       createdBy: ['', Validators.required],
-      statusId: ['', Validators.required],
-      version: ['', Validators.required],
       comments: ['']
     });
   }

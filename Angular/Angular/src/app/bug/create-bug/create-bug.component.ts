@@ -20,17 +20,18 @@ export class CreateBugComponent implements OnInit {
 
   ngOnInit() {
     this.bugForm = this.fb.group({
-      Description: ['', Validators.required],
-      Environment: ['', Validators.required],
-      Priority: [''],
-      Responsible : [''],
-      Regression: [false, Validators.required],
-      FixedId: ['', Validators.required],
-      NotFixedReason: ['', Validators.required],
-      CreatedBy: ['', Validators.required],
-      StatusId: ['', Validators.required],
-      Version: ['', Validators.required],
-      Comments: ['']
+      description: ['', Validators.required],
+      environment: ['', Validators.required],
+      priority: [''],
+      responsible : [''],
+      regression: [false, Validators.required],
+      fixedId: ['', Validators.required],
+      notFixedReason: ['', Validators.required],
+      comments: [''],
+      createdBy: ['', Validators.required],
+      // StatusId: ['', Validators.required],
+      // Version: ['', Validators.required],
+      
     });
   }
   submitCreateBugForm() {

@@ -75,11 +75,12 @@ namespace Assignment.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> CreateUserStory([FromBody] CreateUserStoryCommand createUserStoryCommand)
+        public async Task<IActionResult> CreateUserStory([FromBody] CreateUserStoryDTO createUserStoryDTO)
         {
             try
             {
-                var response = await _mediator.Send(createUserStoryCommand);
+                var command = new CreateUserStoryCommand(createUserStoryDTO); 
+                var response = await _mediator.Send(command);
                 return StatusCode((int)HttpStatusCode.Created, response);
             }
             catch (InvalidRequestBodyException ex)

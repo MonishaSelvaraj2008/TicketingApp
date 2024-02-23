@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'updateUserStory', component:UpdateUserStoryComponent },
   {path: 'createBug', component:CreateBugComponent },
   {
-    path: 'customerSupport', component:CreateCustomerSupportComponent },
+    path: 'createCustomerSupport', component:CreateCustomerSupportComponent },
   {
     path: 'app',
     loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule)

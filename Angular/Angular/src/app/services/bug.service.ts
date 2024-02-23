@@ -15,7 +15,7 @@ export class BugService {
 
   postBugData(bug: Bug): Promise<void> {
   
-    return this.http.post<void>(this.apiBaseAddress+'/api/Bug', bug ).toPromise();
+    return this.http.post<void>(this.apiBaseAddress+'api/Bug', bug ).toPromise();
   }
   
   putBugData(Id: any, bug: Bug): Promise<void> {

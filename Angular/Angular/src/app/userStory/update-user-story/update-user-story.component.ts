@@ -33,15 +33,15 @@ export class UpdateUserStoryComponent implements OnInit {
   }
 
   submitUpdateUserStoryForm() {
-    if (this.userStoryForm.valid) {
-      const userStory: UserStory = this.userStoryForm.value;
-      const userId = userStory.Id; 
-      this.updateUserStoryService.putUserStoryData(userId, userStory)
-        .then(() => {
-          console.log('User story updated successfully!!!');
-          this.router.navigate(['']); 
-        })
+  //   if (this.userStoryForm.valid) {
+  //     const userStory: UserStory = this.userStoryForm.value;
+  //     const userId = userStory.Id; 
+  //     this.updateUserStoryService.putUserStoryData(userId, userStory)
+  //       .then(() => {
+  //         console.log('User story updated successfully!!!');
+  //         this.router.navigate(['']); 
+  //       })
       
-  }
+  // }
 }
 }
