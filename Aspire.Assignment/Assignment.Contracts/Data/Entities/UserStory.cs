@@ -12,7 +12,7 @@ public class UserStory : BaseEntity
 
 
     [Column(TypeName = "int" )]
-     [ForeignKey("User")]
+    [ForeignKey("User")]
      public int Responsible { get; set;}    
 
     [Required]
@@ -40,13 +40,13 @@ public class UserStory : BaseEntity
     public string Comments { get; set; }
 
 
-    public User User { get; set; }
+    // public User User { get; set; }
  
 
-    public User user { get; set; }
+    // public User user { get; set; }
  
 
-    public Status Status { get; set; }
+    // public Status Status { get; set; }
 
 }
 }

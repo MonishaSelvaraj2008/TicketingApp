@@ -1,5 +1,5 @@
 export interface Status
 {
     StatusId : number;
-    State : String;
+    State : string;
 }

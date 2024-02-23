@@ -25,8 +25,6 @@ export class CreateUserStoryComponent implements OnInit {
       AcceptanceCriteria: [''],
       Description: [''],
       CreatedBy: ['', Validators.required],
-      StatusId: ['', Validators.required],
-      Version: ['', Validators.required],
       Comments: ['']
     });
   }

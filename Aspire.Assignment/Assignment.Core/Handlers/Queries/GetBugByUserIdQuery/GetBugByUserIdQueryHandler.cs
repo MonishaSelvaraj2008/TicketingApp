@@ -25,7 +25,10 @@ namespace Assignment.Core.Handlers.Queries
             {
                 throw new EntityNotFoundException($"No Bug found of Id: " + request.CreatedBy);
             }
-            return _mapper.Map<IEnumerable<BugDTO>>(bug);
+            List<Bug> bugs = bug.ToList();
+            return _mapper.Map<List<BugDTO>>(bug);
+            //return bug;
+
         }
     }
 }

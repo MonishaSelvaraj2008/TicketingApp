@@ -36,12 +36,11 @@ public class CustomerSupport : BaseEntity
     [ForeignKey("Status")]
     public int StatusId { get; set; }
 
-    public User User { get; set; }
+    // public User User { get; set; }
 
-    public User user { get; set; }
+    // public User user { get; set; }
 
-    public Status Status { get; set; }
- 
-    public List<CustomerDetails> Customer { get; set; }
+    // public Status Status { get; set; }
+
 }
 }

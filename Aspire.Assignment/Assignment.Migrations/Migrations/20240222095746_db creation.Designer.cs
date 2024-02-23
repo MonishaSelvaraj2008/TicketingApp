@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment.Migrations.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240221065609_db creation")]
+    [Migration("20240222095746_db creation")]
     partial class dbcreation
     {
         /// <inheritdoc />
@@ -90,9 +90,6 @@ namespace Assignment.Migrations.Migrations
                     b.Property<string>("CustomerName")
                         .HasColumnType("varchar(250)");
 
-                    b.Property<int?>("CustomerSupportId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("varchar(250)");
 
@@ -101,8 +98,6 @@ namespace Assignment.Migrations.Migrations
                         .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerSupportId");
 
                     b.ToTable("CustomerDetails");
                 });
@@ -171,6 +166,9 @@ namespace Assignment.Migrations.Migrations
                         .HasColumnType("varchar(250)");
 
                     b.Property<int>("Responsible")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
                         .HasColumnType("int");
 
                     b.Property<int>("Version")
@@ -385,13 +383,6 @@ namespace Assignment.Migrations.Migrations
                     b.Navigation("Bug");
                 });
 
-            modelBuilder.Entity("Assignment.Contracts.Data.Entities.CustomerDetails", b =>
-                {
-                    b.HasOne("Assignment.Contracts.Data.Entities.CustomerSupport", null)
-                        .WithMany("Customer")
-                        .HasForeignKey("CustomerSupportId");
-                });
-
             modelBuilder.Entity("Assignment.Contracts.Data.Entities.CustomerSupport", b =>
                 {
                     b.HasOne("Assignment.Contracts.Data.Entities.User", "user")
@@ -493,11 +484,6 @@ namespace Assignment.Migrations.Migrations
                     b.Navigation("User");
 
                     b.Navigation("user");
-                });
-
-            modelBuilder.Entity("Assignment.Contracts.Data.Entities.CustomerSupport", b =>
-                {
-                    b.Navigation("Customer");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Bug } from 'src/app/interface/bug';
 import { BugService } from 'src/app/services/bug.service';
 
+
 @Component({
   selector: 'app-create-bug',
   templateUrl: './create-bug.component.html',
@@ -13,7 +14,7 @@ export class CreateBugComponent implements OnInit {
 
   bugForm! : FormGroup;
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
               private bugService: BugService,
               private router : Router) { }
 
@@ -25,8 +26,8 @@ export class CreateBugComponent implements OnInit {
       Responsible : [''],
       Regression: [false, Validators.required],
       FixedId: ['', Validators.required],
-      NotFixedReason: ['', Validators.required], 
-      CreatedBy: ['', Validators.required], 
+      NotFixedReason: ['', Validators.required],
+      CreatedBy: ['', Validators.required],
       StatusId: ['', Validators.required],
       Version: ['', Validators.required],
       Comments: ['']
@@ -39,11 +40,11 @@ export class CreateBugComponent implements OnInit {
         .then(() => {
           console.log('Data added successfully!!!');
         })
-        
+
         .finally(() => {
           this.router.navigate(['']);
         });
     }
   }
-  
+
 }

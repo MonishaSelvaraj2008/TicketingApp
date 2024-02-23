@@ -12,6 +12,22 @@ namespace Assignment.Migrations.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "CustomerDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerName = table.Column<string>(type: "varchar(250)", nullable: true),
+                    Email = table.Column<string>(type: "varchar(250)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "varchar(20)", nullable: false),
+                    AddedOn = table.Column<DateTime>(type: "datetime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerDetails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Status",
                 columns: table => new
                 {
@@ -192,28 +208,6 @@ namespace Assignment.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerDetails",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerName = table.Column<string>(type: "varchar(250)", nullable: true),
-                    Email = table.Column<string>(type: "varchar(250)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "varchar(20)", nullable: false),
-                    CustomerSupportId = table.Column<int>(type: "int", nullable: true),
-                    AddedOn = table.Column<DateTime>(type: "datetime", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CustomerDetails_CustomerSupport_CustomerSupportId",
-                        column: x => x.CustomerSupportId,
-                        principalTable: "CustomerSupport",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CustomerSupportHistory",
                 columns: table => new
                 {
@@ -224,17 +218,18 @@ namespace Assignment.Migrations.Migrations
                     Responsible = table.Column<int>(type: "int", nullable: false),
                     Version = table.Column<int>(type: "int", nullable: false),
                     Comments = table.Column<string>(type: "varchar(250)", nullable: true),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
                     AddedOn = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CustomerSupportHistory", x => x.Id);
                     table.ForeignKey(
-                        name: "_CustomerSupportHistory_CustomerSupport_CustomerSupportId",
+                        name: "FK_CustomerSupportHistory_CustomerSupport_CustomerSupportId",
                         column: x => x.CustomerSupportId,
                         principalTable: "CustomerSupport",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -283,11 +278,6 @@ namespace Assignment.Migrations.Migrations
                 name: "IX_BugHistory_BugId",
                 table: "BugHistory",
                 column: "BugId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CustomerDetails_CustomerSupportId",
-                table: "CustomerDetails",
-                column: "CustomerSupportId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerSupport_CreatedBy",
