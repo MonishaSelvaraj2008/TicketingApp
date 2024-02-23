@@ -1,7 +1,7 @@
 import { Status } from "./status";
 import { User } from "./user";
 
-export interface UserStory : BaseEntity {
+export interface UserStory {
     Id: number;
     Responsible: number;
     StoryPoint: number;
@@ -11,7 +11,9 @@ export interface UserStory : BaseEntity {
     StatusId: number;
     Version: number;
     Comments: string;
-    AddedOn: string;
+    AddedOn: Date;
+    User?: User;
+    Status?: Status;
   }
   
  
