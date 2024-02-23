@@ -38,13 +38,9 @@ export class CreateBugComponent implements OnInit {
     if (this.bugForm.valid) {
       const bug: Bug = this.bugForm.value;
       this.bugService.postBugData(bug)
-        .then(() => {
+        .subscribe(() => {
           console.log('Data added successfully!!!');
         })
-
-        .finally(() => {
-          this.router.navigate(['']);
-        });
     }
   }
 

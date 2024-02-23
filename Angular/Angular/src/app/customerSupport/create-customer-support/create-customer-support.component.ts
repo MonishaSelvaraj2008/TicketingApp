@@ -30,13 +30,10 @@ export class CreateCustomerSupportComponent implements OnInit {
     if (this.customerSupportForm.valid) {
       const customerSupport: CustomerSupport = this.customerSupportForm.value;
       this.CustomerSupportService.postCustomerSupportData(customerSupport)
-        .then(() => {
+        .subscribe(() => {
           console.log('Data added successfully!!!');
         })
 
-        .finally(() => {
-          this.router.navigate(['']);
-        });
     }
   }
 

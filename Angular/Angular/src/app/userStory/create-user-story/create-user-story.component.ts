@@ -33,14 +33,14 @@ export class CreateUserStoryComponent implements OnInit {
     if (this.userStoryForm.valid) {
       const userStory: UserStory = this.userStoryForm.value;
       this.userStoryService.postUserStoryData(userStory)
-        .then(() => {
+        .subscribe(() => {
           console.log('Data added successfully!!!');
+          this.navigateToHomePage();
         })
-        
-        .finally(() => {
-          this.router.navigate(['']);
-        });
     }
   }
-  
+  navigateToHomePage() {
+    this.router.navigate(['']); 
+  }
+
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CustomerSupport } from '../interface/customerSupport';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class CustomerSupportService {
 
   constructor(private http: HttpClient) {}
 
-  postCustomerSupportData(customerSupport: CustomerSupport): Promise<void> {
+  postCustomerSupportData(customerSupport: CustomerSupport): Observable<any> {
 
-    return this.http.post<void>(this.apiBaseAddress+'/api/CustomerSupport', customerSupport ).toPromise();
+    return this.http.post<any>(this.apiBaseAddress+'/api/CustomerSupport', customerSupport );
   }
 
   putCustomerSupportData(Id: any, customerSupport: CustomerSupport): Promise<void> {

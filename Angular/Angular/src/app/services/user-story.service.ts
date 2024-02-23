@@ -15,9 +15,9 @@ export class UserStoryService {
 
   constructor(private http: HttpClient) {}
 
-  postUserStoryData(userStory: UserStory): Promise<void> {
+  postUserStoryData(userStory: UserStory): Observable<any> {
   
-    return this.http.post<void>(this.apiBaseAddress+'/api/UserStory', userStory).toPromise();
+    return this.http.post<any>(this.apiBaseAddress+'/api/UserStory', userStory);
   }
   
   putUserStoryData(Id: any, userStory: UserStory): Promise<void> {
