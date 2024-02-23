@@ -75,10 +75,11 @@ namespace Assignment.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> CreateCustomerSupport([FromBody] CreateCustomerSupportCommand createCustomerSupportCommand)
+        public async Task<IActionResult> CreateCustomerSupport([FromBody] CreateCustomerSupportDTO createCustomerSupportDTO)
         {
             try
             {
+                var createCustomerSupportCommand = new CreateCustomerSupportCommand(createCustomerSupportDTO);
                 var response = await _mediator.Send(createCustomerSupportCommand);
                 return StatusCode((int)HttpStatusCode.Created, response);
             }

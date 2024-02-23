@@ -11,7 +11,11 @@ namespace Assignment.Core.Handlers.Commands
 {
     public class CreateCustomerSupportCommand : IRequest<int>
     {
-        public CreateCustomerSupportDTO? Model { get; set;}
+        public CreateCustomerSupportDTO? Model { get;}
+
+        public CreateCustomerSupportCommand(CreateCustomerSupportDTO createCustomerSupportDTO){
+            this.Model = createCustomerSupportDTO;
+        }
 
     }
 }

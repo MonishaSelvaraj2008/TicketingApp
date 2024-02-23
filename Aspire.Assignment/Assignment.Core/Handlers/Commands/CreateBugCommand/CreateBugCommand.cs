@@ -11,7 +11,10 @@ namespace Assignment.Core.Handlers.Commands
 {
     public class CreateBugCommand : IRequest<int>
     {
-        public CreateBugDTO? Model { get; set;}
+        public CreateBugDTO? Model { get;}
+        public CreateBugCommand(CreateBugDTO createBugDTO){
+            this.Model = createBugDTO;
+        }
 
     }
 }

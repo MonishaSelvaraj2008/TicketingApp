@@ -20,12 +20,12 @@ export class CreateUserStoryComponent implements OnInit {
 
   ngOnInit() {
     this.userStoryForm = this.fb.group({
-      Responsible: ['', Validators.required],
-      StoryPoint: ['', Validators.required],
-      AcceptanceCriteria: [''],
-      Description: [''],
-      CreatedBy: ['', Validators.required],
-      Comments: ['']
+      responsible: ['', Validators.required],
+      storyPoint: ['', Validators.required],
+      acceptanceCriteria: [''],
+      description: [''],
+      createdBy: ['', Validators.required],
+      comments: ['']
     });
   }
 

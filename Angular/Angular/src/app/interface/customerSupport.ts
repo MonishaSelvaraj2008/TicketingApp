@@ -1,11 +1,8 @@
 export interface CustomerSupport{
-    Id: number;
-    Responsible: number
-    CustomerId : number;
-    Details : string;
-    Version: number;
-    Comments: string;
-    StatusId: number;
-    AddedOn: string;
-    
+    responsible: number
+    customerId : number;
+    details : string;
+    comments: string;
+    createdBy: string;
+    addedOn: string;    
 }

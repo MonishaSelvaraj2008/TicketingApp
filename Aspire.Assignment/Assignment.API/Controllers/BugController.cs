@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Assignment.Contracts.Data.Entities;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace Assignment.Controllers
 {
@@ -75,10 +76,11 @@ namespace Assignment.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> CreateBug([FromBody] CreateBugCommand createBugCommand)
+        public async Task<IActionResult> CreateBug([FromBody] CreateBugDTO createBugDTO)
         {
             try
             {
+                var createBugCommand = new CreateBugCommand(createBugDTO);
                 var response = await _mediator.Send(createBugCommand);
                 return StatusCode((int)HttpStatusCode.Created, response);
             }
