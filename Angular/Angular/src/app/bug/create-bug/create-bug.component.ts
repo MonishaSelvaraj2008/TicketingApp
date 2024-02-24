@@ -12,7 +12,7 @@ import { BugService } from 'src/app/services/bug.service';
 })
 export class CreateBugComponent implements OnInit {
 
- 
+public id = localStorage.getItem('id');
 bugForm! : FormGroup;
 
   constructor(private fb: FormBuilder, 
@@ -29,7 +29,7 @@ bugForm! : FormGroup;
       fixedId: ['', Validators.required],
       notFixedReason: ['', Validators.required],
       comments: [''],
-      createdBy: ['', Validators.required],
+      createdBy: [this.id, Validators.required],
     });
   }
 
@@ -44,7 +44,7 @@ bugForm! : FormGroup;
     }
   }
   navigateToHomePage() {
-    this.router.navigate(['']); 
+    this.router.navigate(['/dashboard']); 
   }
 
 }

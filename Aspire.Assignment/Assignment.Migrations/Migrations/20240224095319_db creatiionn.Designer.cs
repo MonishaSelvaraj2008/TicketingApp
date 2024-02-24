@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment.Migrations.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240224044237_db creation password")]
-    partial class dbcreationpassword
+    [Migration("20240224095319_db creatiionn")]
+    partial class dbcreatiionn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
