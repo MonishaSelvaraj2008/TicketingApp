@@ -13,6 +13,8 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class CreateUserStoryComponent implements OnInit {
   userStoryForm! : FormGroup;
+  public id = localStorage.getItem('id');
+  public name = localStorage.getItem('firstname');
 
   constructor(private fb: FormBuilder, 
               private userStoryService: UserStoryService,
@@ -24,7 +26,7 @@ export class CreateUserStoryComponent implements OnInit {
       storyPoint: ['', Validators.required],
       acceptanceCriteria: [''],
       description: [''],
-      createdBy: ['', Validators.required],
+      createdBy: [this.id, Validators.required],
       comments: ['']
     });
   }
@@ -40,7 +42,7 @@ export class CreateUserStoryComponent implements OnInit {
     }
   }
   navigateToHomePage() {
-    this.router.navigate(['']); 
+    this.router.navigate(['/dashboard']); 
   }
 
 }

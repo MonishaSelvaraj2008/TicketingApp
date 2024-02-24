@@ -10,7 +10,7 @@ import { CustomerSupportService } from 'src/app/services/customer-support.servic
   styleUrls: ['./create-customer-support.component.scss']
 })
 export class CreateCustomerSupportComponent implements OnInit {
- 
+  public id = localStorage.getItem('id');
   customerSupportForm! : FormGroup;
  
   constructor(private fb: FormBuilder,
@@ -22,7 +22,7 @@ export class CreateCustomerSupportComponent implements OnInit {
       responsible: ['', Validators.required],
       customerId:['',Validators.required],
       details: [''],
-      createdBy: ['', Validators.required],
+      createdBy: [this.id, Validators.required],
       comments: ['']
     });
   }
@@ -37,7 +37,7 @@ export class CreateCustomerSupportComponent implements OnInit {
     }
   }
   navigateToHomePage() {
-    this.router.navigate(['']); 
+    this.router.navigate(['/dashboard']); 
   }
 
 }

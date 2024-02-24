@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Assignment.Migrations.Migrations
 {
     /// <inheritdoc />
-    public partial class dbcreationpassword : Migration
+    public partial class dbcreatiionn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
