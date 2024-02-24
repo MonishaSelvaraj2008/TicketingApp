@@ -1,4 +1,3 @@
-
 <app-header></app-header>
 <br><br><br><br>
 <section class="vh-100">
@@ -8,41 +7,21 @@
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           class="img-fluid" alt="Sample image">
       </div><br><br>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form>
-          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-            <p class="lead fw-normal mb-0 me-3">Log in with</p>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
-            </button>
-
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-twitter"></i>
-            </button>
-
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-linkedin-in"></i>
-            </button>
-          </div>
-
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0">Or</p>
-          </div>
-
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1"><br><br>
+        <form [formGroup]="login">
+         
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" class="form-control form-control-lg"
+            <input type="email" id="form3Example3" formControlName="email" class="form-control form-control-lg"
               placeholder="Enter a valid email address" />
-            <label class="form-label" for="form3Example3">Email address</label>
           </div>
-
+ 
           <!-- Password input -->
           <div class="form-outline mb-3">
-            <input type="password" id="form3Example4" class="form-control form-control-lg"
+            <input type="password" id="form3Example4" formControlName="password" class="form-control form-control-lg"
               placeholder="Enter password" />
-            <label class="form-label" for="form3Example4">Password</label>
           </div>
-
+ 
           <div class="d-flex justify-content-between align-items-center">
             <!-- Checkbox -->
             <div class="form-check mb-0">
@@ -53,39 +32,17 @@
             </div>
             <a href="#!" class="text-body">Forgot password?</a>
           </div>
-
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" class="btn btn-primary btn-lg"
+ 
+          <div class="text-center text-lg-start mt-2 pt-2">
+            <button type="button" class="btn btn-primary btn-lg" (click)="userLogin()"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
               <!-- <br><br><br><a href="#!" class="text-body">Back to Home Page</a> -->
           </div>
-
+ 
         </form>
       </div>
     </div>
   </div>
-
-    <!-- Copyright -->
-
-    <!-- Copyright -->
-
-    <!-- Right -->
-    <div>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="#!" class="text-white">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </div>
-    <!--Right-->
-  </section>
+</section>
 <app-footer ></app-footer>
-
-
+ 

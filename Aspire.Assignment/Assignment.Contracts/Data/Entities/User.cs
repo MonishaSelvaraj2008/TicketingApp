@@ -19,10 +19,10 @@ namespace Assignment.Contracts.Data.Entities
         public string LastName { get; set; }
 
         [Column(TypeName = "varchar(20)")]
-        public long Mobile { get; set; } 
+        public string Mobile { get; set; } 
         [Column(TypeName = "varchar(50)")]     
         public string Email{get; set;}
-        [Column(TypeName = "varchar(50)")]
+
         public string Password { get; set; }
 
     }

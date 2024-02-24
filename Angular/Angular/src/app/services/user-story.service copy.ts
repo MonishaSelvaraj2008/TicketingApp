@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { UserStory } from '../interface/userStory';
+import { Bug } from '../interface/bug';
 import { environment } from 'src/environments/environment';
 
 
@@ -9,21 +9,21 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserStoryService {
+export class BugService {
   apiBaseAddress = environment.apiBaseAddress;
 
 
   constructor(private http: HttpClient) {}
 
-  postUserStoryData(userStory: UserStory): Observable<any> {
+  postBugData(bug: Bug): Observable<any> {
   
-    return this.http.post<any>(this.apiBaseAddress+'/api/UserStory', userStory);
+    return this.http.post<any>(this.apiBaseAddress+'/api/Bug', bug);
   }
   
 
-  getUserStoryById(Id:number)
+  getBugById(Id:number)
   {
-    return this.http.get<any>(`${this.apiBaseAddress}/api/UserStory/${Id}`)
+    return this.http.get<any>(`${this.apiBaseAddress}/api/Bug/${Id}`)
   }
  
 }

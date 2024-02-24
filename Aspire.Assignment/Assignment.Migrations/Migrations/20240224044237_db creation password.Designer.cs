@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment.Migrations.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240222095746_db creation")]
-    partial class dbcreation
+    [Migration("20240224044237_db creation password")]
+    partial class dbcreationpassword
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -218,11 +218,10 @@ namespace Assignment.Migrations.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Mobile")
-                        .IsRequired()
                         .HasColumnType("varchar(20)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

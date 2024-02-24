@@ -215,11 +215,10 @@ namespace Assignment.Migrations.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Mobile")
-                        .IsRequired()
                         .HasColumnType("varchar(20)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

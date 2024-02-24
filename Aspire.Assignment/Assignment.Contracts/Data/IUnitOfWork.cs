@@ -4,6 +4,7 @@ namespace Assignment.Contracts.Data
 {
     public interface IUnitOfWork
     {
+        IUserRepository User {get;}
         IBugRepository Bug { get; }
         IBugHistoryRepository BugHistory { get; }
          ICustomerSupportRepository CustomerSupport { get; }

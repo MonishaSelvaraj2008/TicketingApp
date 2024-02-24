@@ -15,8 +15,8 @@ export class BugService {
   constructor(private http: HttpClient) {}
 
   postBugData(bug: Bug): Observable<any> {
-  
-    return this.http.post<any>(this.apiBaseAddress+'api/Bug', bug );
+    console.log(bug);
+    return this.http.post<any>(this.apiBaseAddress+'/api/Bug',bug );
   }
   
   putBugData(Id: any, bug: Bug): Promise<void> {
