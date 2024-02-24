@@ -12,9 +12,10 @@ import { BugService } from 'src/app/services/bug.service';
 })
 export class CreateBugComponent implements OnInit {
 
-  bugForm! : FormGroup;
+ 
+bugForm! : FormGroup;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: FormBuilder, 
               private bugService: BugService,
               private router : Router) { }
 
@@ -29,23 +30,21 @@ export class CreateBugComponent implements OnInit {
       notFixedReason: ['', Validators.required],
       comments: [''],
       createdBy: ['', Validators.required],
-      // StatusId: ['', Validators.required],
-      // Version: ['', Validators.required],
-      
     });
   }
+
   submitCreateBugForm() {
     if (this.bugForm.valid) {
       const bug: Bug = this.bugForm.value;
       this.bugService.postBugData(bug)
-        .then(() => {
+        .subscribe(() => {
           console.log('Data added successfully!!!');
+          this.navigateToHomePage();
         })
-
-        .finally(() => {
-          this.router.navigate(['']);
-        });
     }
+  }
+  navigateToHomePage() {
+    this.router.navigate(['']); 
   }
 
 }

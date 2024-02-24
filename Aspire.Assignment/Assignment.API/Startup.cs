@@ -9,6 +9,7 @@ using Assignment.Infrastructure;
 using Assignment.Core;
 using Microsoft.AspNetCore.Mvc;
 using Assignment.Core.Security;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Assignment
 {
@@ -45,10 +46,19 @@ namespace Assignment
     // });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(c =>
+             services.AddSwaggerGen(options => {
+            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Aspire Marketplace App API", Description = "Aspire Marketplace App  is a  solution, built to demonstrate implementing market place to sell/download the app which present in the market place ", Version = "v1" });
+                Description = "Standard Authorization header using the bearer scheme (\"bearer {token}\")",
+                In = ParameterLocation.Header,
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey
             });
+ 
+            //Install the Swashbuckle.AspNetCore.Filters for Security requirements operation filters.
+            options.OperationFilter<SecurityRequirementsOperationFilter>();
+            });
+
         }
 
 

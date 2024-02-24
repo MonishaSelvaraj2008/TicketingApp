@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Assignment.Migrations.Migrations
 {
     /// <inheritdoc />
-    public partial class dbcreation : Migration
+    public partial class dbcreationpassword : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,9 +48,9 @@ namespace Assignment.Migrations.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "varchar(50)", nullable: true),
                     LastName = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Mobile = table.Column<string>(type: "varchar(20)", nullable: false),
+                    Mobile = table.Column<string>(type: "varchar(20)", nullable: true),
                     Email = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Password = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedOn = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>

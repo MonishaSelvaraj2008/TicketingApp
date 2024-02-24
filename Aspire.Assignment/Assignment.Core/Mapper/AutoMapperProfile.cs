@@ -20,6 +20,8 @@ namespace Assignment.Core.Mapper
             CreateMap<CustomerSupportDTO,CustomerSupport>().ReverseMap();
             // CreateMap<IEnumerable<CustomerSupportDTO>,IEnumerable<CustomerSupport>>().ReverseMap();
             CreateMap<UpdateCustomerSupportDTO,CustomerSupport>().ReverseMap();
+
+            CreateMap<User,CreateUsersDTO>().ReverseMap();
         }
     }
 }
