@@ -21,7 +21,7 @@ const routes: Routes = [
   },
 
   {path: 'createUserStory', component:CreateUserStoryComponent, canActivate:[RolebasedGuard], data:{role:'user' }},
-  {path: 'updateUserStory', component:UpdateUserStoryComponent, canActivate:[RolebasedGuard], data:{role:'user' }},
+  {path: 'updateUserStory/:id', component:UpdateUserStoryComponent, canActivate:[RolebasedGuard], data:{role:'user' }},
   {path: 'createBug', component:CreateBugComponent, canActivate:[RolebasedGuard], data:{role:'user'} },
   {
     path: 'createCustomerSupport', component:CreateCustomerSupportComponent, canActivate:[RolebasedGuard], data:{role:'user' }},

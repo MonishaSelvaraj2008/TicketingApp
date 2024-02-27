@@ -11,7 +11,11 @@ namespace Assignment.Core.Handlers.Commands
 {
     public class UpdateUserStoryCommand : IRequest<int>
     {
-        public UpdateUserStoryDTO? Model { get; set;}
-    
+        public UpdateUserStoryDTO? Model { get;}
+
+        public UpdateUserStoryCommand(UpdateUserStoryDTO UpdateUserStoryDTO){
+            this.Model = UpdateUserStoryDTO;
+        }
+
     }
 }

@@ -6,7 +6,7 @@ export interface User {
     Id: number;
     FirstName: string;
     LastName: string;
-    Mobile: bigint;
+    Mobile: string;
     Email: string;
     Password: string;
 }

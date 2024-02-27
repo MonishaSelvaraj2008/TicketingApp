@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserStory } from '../interface/userStory';
 import { environment } from 'src/environments/environment';
+import { UpdateUserStory } from '../interface/updateuserStory';
 
 
 
@@ -15,16 +16,21 @@ export class UserStoryService {
 
   constructor(private http: HttpClient) {}
 
-  postUserStoryData(userStory: UserStory): Observable<any> {
-  
+  postUserStoryData(userStory: UserStory): Observable<any>
+  {
     return this.http.post<any>(this.apiBaseAddress+'/api/UserStory', userStory);
   }
   
 
-  getUserStoryById(Id:number)
+  getUserStoryById(id:number) 
   {
-    return this.http.get<any>(`${this.apiBaseAddress}/api/UserStory/${Id}`)
+    //https://localhost:5001/api/UserStory/UserStoryId?UserStoryId=12
+    return this.http.get<any>(`${this.apiBaseAddress}/api/UserStory/UserStoryId?UserStoryId=${id}`);
   }
- 
+
+  updateUserStory(updateUserStory:any)
+  {
+    return this.http.put(`${this.apiBaseAddress}/api/UserStory`, updateUserStory);
+  }
 }
 

@@ -22,8 +22,12 @@
         </div>
         <div>
           <label for="responsible">Responsible:</label>
-          <input type="text" id="responsible" formControlName="responsible"
+          <div >
+          <select type="text" id="responsible" formControlName="responsible" 
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+            <option *ngFor="let data of user" value="{{data.id}}">{{data.firstName}}&nbsp;{{data.lastName}}</option>
+          </select>
+          </div>
         </div>
         <div>
           <label for="regression">Regression:</label>

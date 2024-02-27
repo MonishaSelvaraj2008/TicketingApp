@@ -11,6 +11,7 @@ namespace Assignment.Contracts.Data
         ICustomerSupportHistoryRepository CustomerSupportHistory { get; }
         IUserStoryHistoryRepository UserStoryHistory { get; }
         IUserStoryRepository UserStory {get;}
+        IStatusRepository Status {get;}
         Task CommitAsync();
     }
 }
