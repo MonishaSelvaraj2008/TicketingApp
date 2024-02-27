@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tokenresponse } from '../interface/TokenResponse';
+import * as list from 'postcss/lib/list';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class AuthService {
     {
       return this.httpClients.post<Tokenresponse>(this.loginAddress +'/api/User/Login', { email, password });
     }
+
+    getUser(){
+      return this.httpClients.get<any[]>(this.loginAddress+'/api/User');
+    }
+
  
     logout()
     {

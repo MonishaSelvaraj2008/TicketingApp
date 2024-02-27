@@ -36,7 +36,7 @@ namespace Assignment.Controllers
         public async Task<IActionResult> GetAsync(){
             var query= new GetUserQuery();
             var response= await _mediator.Send(query);
-             return Ok(response);
+            return Ok(response);
         }
  
         [HttpPost]

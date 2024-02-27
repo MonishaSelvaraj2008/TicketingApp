@@ -52,7 +52,7 @@ namespace Assignment.Controllers
             }
         }
 
-        [HttpGet("UserId")]
+        [HttpGet("UserStoryId")]
         [ProducesResponseType(typeof(UserStoryDTO), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
         public async Task<IActionResult> GetUserStoryById([FromQuery] GetUserStoryByIdQuery getUserStoryByIdQuery)
@@ -96,11 +96,12 @@ namespace Assignment.Controllers
         [HttpPut]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> UpdateUserStory([FromBody] UpdateUserStoryCommand updateUserStoryCommand)
+        public async Task<IActionResult> UpdateUserStory([FromBody] UpdateUserStoryDTO updateUserStoryDTO)
         {
             try
             {
-                var response = await _mediator.Send(updateUserStoryCommand);
+                var command = new UpdateUserStoryCommand(updateUserStoryDTO);
+                var response = await _mediator.Send(command);
                 return StatusCode((int)HttpStatusCode.Created, response);
             }
             catch (InvalidRequestBodyException ex)

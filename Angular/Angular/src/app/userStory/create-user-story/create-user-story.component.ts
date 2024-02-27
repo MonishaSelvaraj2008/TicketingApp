@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserStoryService } from 'src/app/services/user-story.service';
 import { UserStory } from 'src/app/interface/userStory';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { StatusService } from 'src/app/services/status.service';
 
 @Component({
   selector: 'app-create-user-story',
@@ -13,11 +13,13 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class CreateUserStoryComponent implements OnInit {
   userStoryForm! : FormGroup;
+  user! : any[];
   public id = localStorage.getItem('id');
-  public name = localStorage.getItem('firstname');
 
   constructor(private fb: FormBuilder, 
               private userStoryService: UserStoryService,
+              private authService:AuthService,
+              private statusService: StatusService,
               private router : Router) { }
 
   ngOnInit() {
@@ -29,13 +31,23 @@ export class CreateUserStoryComponent implements OnInit {
       createdBy: [this.id, Validators.required],
       comments: ['']
     });
+    this.getResponsible();
+
   }
+
+  getResponsible(){
+    this.authService.getUser().subscribe((data:any[])=>{
+      this.user = data;
+    })
+  }
+
 
   submitCreateUserStoryForm() {
     if (this.userStoryForm.valid) {
       const userStory: UserStory = this.userStoryForm.value;
       this.userStoryService.postUserStoryData(userStory)
-        .subscribe(() => {
+        .subscribe((result:any) => {
+          localStorage.setItem("userstory", result.statusId);
           console.log('Data added successfully!!!');
           this.navigateToHomePage();
         })

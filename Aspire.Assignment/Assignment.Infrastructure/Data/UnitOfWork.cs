@@ -22,6 +22,7 @@ namespace Assignment.Core.Data
         public ICustomerSupportHistoryRepository CustomerSupportHistory => new CustomerSupportHistoryRepository(_context);
         
         public IUserStoryRepository UserStory => new UserStoryRepository(_context);
+        public IStatusRepository Status => new StatusRepository(_context);
 
         public IUserStoryHistoryRepository UserStoryHistory => new UserStoryHistoryRepository(_context);
         public async Task CommitAsync()

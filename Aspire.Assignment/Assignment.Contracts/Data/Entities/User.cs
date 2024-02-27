@@ -12,7 +12,7 @@ namespace Assignment.Contracts.Data.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }// ACE ID
+        public int Id { get; set; }
         [Column(TypeName = "varchar(50)")]
         public string FirstName { get; set; }
         [Column(TypeName = "varchar(50)")]
