@@ -17,6 +17,7 @@ import { CreateBugComponent } from './bug/create-bug/create-bug.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CreateCustomerSupportComponent } from './customerSupport/create-customer-support/create-customer-support.component';
+import { UpdateBugComponent } from './bug/create-bug/update-bug/update-bug.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { CreateCustomerSupportComponent } from './customerSupport/create-custome
     CreateUserStoryComponent,
     UpdateUserStoryComponent,
     CreateCustomerSupportComponent,
+    UpdateBugComponent,
    ],
   imports: [
     BrowserModule,

@@ -14,6 +14,12 @@
           <div class="form-outline mb-4">
             <input type="email" id="form3Example3" formControlName="email" class="form-control form-control-lg"
               placeholder="Enter a valid email address" />
+              <div *ngIf="login.controls['email'].invalid && (login.controls['email'].dirty || login.controls['email'].touched)">
+                <small style="color: red;" *ngIf="login.controls['email'].errors?.['required']">Email is required</small>
+                <small style="color: red;" *ngIf="login.controls['email'].errors?.['pattern']">Invalid email format. Please enter a valid email.</small>
+                <small style="color: red;" *ngIf="login.controls['email'].errors?.['minLength']">Email must be at least 19 characters long.</small>
+                <small style="color: red;" *ngIf="login.controls['email'].errors?.['maxLength']">Email cannot be more than 33 characters long.</small>
+              </div>
           </div>
  
           <!-- Password input -->

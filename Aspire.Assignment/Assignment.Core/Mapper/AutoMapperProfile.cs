@@ -22,8 +22,15 @@ namespace Assignment.Core.Mapper
             CreateMap<UpdateCustomerSupportDTO,CustomerSupport>().ReverseMap();
 
             CreateMap<User,CreateUsersDTO>().ReverseMap();
+
             CreateMap<Status,StatusDTO>().ReverseMap();
             CreateMap<StatusDTO, Status>().ReverseMap();
+
+            CreateMap<UserStoryHistoryDTO,UserStoryHistory>().ReverseMap();
+
+            CreateMap<BugHistoryDTO,BugHistory>().ReverseMap();
+
+            //CreateMap<CustomerSupportHistoryDTO,CustomerSupportHistory>().ReverseMap();
         }
     }
 }

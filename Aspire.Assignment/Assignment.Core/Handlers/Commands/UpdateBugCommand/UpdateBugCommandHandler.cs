@@ -7,7 +7,7 @@ using System.Text.Json;
 using Assignment.Core.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using AutoMapper;
-
+ 
 namespace Assignment.Core.Handlers.Commands
 {
     public class UpdateBugCommandHandler : IRequestHandler<UpdateBugCommand, int>
@@ -15,14 +15,14 @@ namespace Assignment.Core.Handlers.Commands
         private readonly IUnitOfWork _repository;
         private readonly IValidator<UpdateBugDTO> _validator;
         private readonly IMapper _mapper;
-
+ 
         public UpdateBugCommandHandler(IUnitOfWork repository, IValidator<UpdateBugDTO> validator, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
             _validator = validator;
         }
-
+ 
         public async Task<int> Handle(UpdateBugCommand request, CancellationToken cancellationToken)
         {
             var bug = request.Model;
@@ -40,7 +40,7 @@ namespace Assignment.Core.Handlers.Commands
                     Errors = errors
                 };
             }
-            BugHistory bugHistory = new BugHistory{
+           BugHistory bugHistory = new BugHistory{
                 BugId = _bug.Id,
                 Description = _bug.Description,
                 Environment = _bug.Environment,
@@ -52,7 +52,7 @@ namespace Assignment.Core.Handlers.Commands
                 StatusId = _bug.StatusId,
                 Comments = _bug.Comments,
                 Version = _bug.Version
-            }; 
+            };
             _repository.BugHistory.Add(bugHistory);
             var entity = _mapper.Map<Bug>(bug);
             entity.Version=_bug.Version+1;
