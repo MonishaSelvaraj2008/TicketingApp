@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Assignment.Contracts.Data.Entities;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using System.Net.Mail;
+using System.Net;
 
 namespace Assignment.Infrastructure
 {
@@ -30,5 +32,28 @@ namespace Assignment.Infrastructure
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             return services.AddDatabaseContext(configuration).AddUnitOfWork();
         }
+
+        private static string randomCode="000000";
+     static public string sendEmail(string to)
+    {
+      string from, pass, messageBody;
+      Random rand = new Random();
+      randomCode = (rand.Next(999999)).ToString();
+      MailMessage message = new MailMessage();
+      from = "srisaichocolates@gmail.com";
+      pass = "saydadjncyknxudg";
+      messageBody = "Your Verification Code is " + randomCode;
+      message.To.Add(new MailAddress(to));
+      message.From = new MailAddress(from);
+      message.Body = messageBody;
+      message.Subject = "password code";
+      SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+      smtp.EnableSsl = true;
+      smtp.Port = 587;
+      smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+      smtp.Credentials = new NetworkCredential(from, pass);
+      smtp.Send(message);
+      return "sent";
+    }
     }
 }

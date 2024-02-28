@@ -7,7 +7,7 @@ namespace Assignment.Contracts.Data
         IUserRepository User {get;}
         IBugRepository Bug { get; }
         IBugHistoryRepository BugHistory { get; }
-         ICustomerSupportRepository CustomerSupport { get; }
+        ICustomerSupportRepository CustomerSupport { get; }
         ICustomerSupportHistoryRepository CustomerSupportHistory { get; }
         IUserStoryHistoryRepository UserStoryHistory { get; }
         IUserStoryRepository UserStory {get;}
