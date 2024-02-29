@@ -1,32 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { UserStoryService } from 'src/app/services/user-story.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { Tokenresponse } from 'src/app/interface/TokenResponse';
- 
+import { UserStoryService } from '../services/user-story.service';
+import { AuthService } from '../services/auth.service';
+import { Tokenresponse } from '../interface/TokenResponse';
+
 @Component({
   selector: 'app-user-story-list',
   templateUrl: './user-story-list.component.html',
   styleUrls: ['./user-story-list.component.scss']
 })
 export class UserStoryListComponent implements OnInit {
- 
+
   public values:any[] = [];
   public user:any;
- 
+  id:any;
   responsible:any;
-  public showingUser:any;
- 
- 
- 
+  showingUser:any;
+
+  
+
   constructor(private userStoryService: UserStoryService, private authService:AuthService) { }
- 
+
   ngOnInit(): void {
     this.getUserStoryList();
     this.getAllUsers();
-    this.getResponsible();
+    this.getUserById();
   }
- 
- 
+
+
   getUserStoryList()
   {
     let id = localStorage.getItem('id');
@@ -36,25 +36,23 @@ export class UserStoryListComponent implements OnInit {
         this.values = result;
       })
   }
- 
+
   getAllUsers()
   {
     this.authService.getUser().subscribe((result:any[])=>
       {
         console.log(result);
         this.responsible = result[0].firstName;
-        this.showingUser = this.responsible;
       })
   }
- 
-  getResponsible()
+
+  getUserById()
   {
-    this.authService.getUser().subscribe((data:any[])=>
-    {
-      this.user = data;
-      console.log(this.user);
-      this.user = this.showingUser;
-    })
+    this.authService.getUserById(this.id).subscribe((result)=>
+      {
+        this.showingUser = result.firstName;
+        console.log(this.showingUser);
+      })
   }
- 
+
 }

@@ -104,7 +104,6 @@ namespace Assignment.Controllers
             }
         }
 
- 
         [HttpGet("UserId")]
         [ProducesResponseType(typeof(CreateUsersDTO), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]

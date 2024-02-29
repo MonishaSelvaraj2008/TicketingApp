@@ -11,17 +11,16 @@ namespace Assignment.Core.Handlers.Queries
     {
         private readonly IUnitOfWork _repository;
         private readonly IMapper _mapper;
-
         public GetUserByIdQueryHandler(IUnitOfWork repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-
+ 
         public async Task<CreateUsersDTO> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var user = await Task.FromResult(_repository.User.Get(request.UserId));
-
+ 
             if (user == null)
             {
                 throw new EntityNotFoundException($"No User found of Id: " + request.UserId);
