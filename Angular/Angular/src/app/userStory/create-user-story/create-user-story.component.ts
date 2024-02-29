@@ -26,8 +26,14 @@ export class CreateUserStoryComponent implements OnInit {
     this.userStoryForm = this.fb.group({
       responsible: ['', Validators.required],
       storyPoint: ['', Validators.required],
-      acceptanceCriteria: [''],
-      description: [''],
+      acceptanceCriteria: ['', Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(100),
+    ],
+      description: ['', Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(5),
+    ],
       createdBy: [this.id, Validators.required],
       comments: ['']
     });
@@ -43,6 +49,7 @@ export class CreateUserStoryComponent implements OnInit {
 
 
   submitCreateUserStoryForm() {
+    this.userStoryForm.markAllAsTouched();
     if (this.userStoryForm.valid) {
       const userStory: UserStory = this.userStoryForm.value;
       this.userStoryService.postUserStoryData(userStory)

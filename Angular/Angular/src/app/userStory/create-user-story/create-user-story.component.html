@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <div class="flex items-center justify-center mx-auto pt-20">
   <div class="w-full bg-white rounded-lg shadow-lg sm:max-w-md xl:p-0 ">
     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -16,9 +14,22 @@
         </div>
         <div>
           <label for="storyPoint">Story Point:</label>
-          <input type="number" id="storyPoint" formControlName="storyPoint"
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+          <p class="text-sm text-gray-500 mt-1">*10 is the highest priority</p> 
+          <select id="storyPoint" formControlName="storyPoint"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
         </div>
+        
         <div>
           <label for="acceptanceCriteria">Acceptance Criteria:</label>
           <textarea id="acceptanceCriteria" formControlName="acceptanceCriteria"
@@ -28,6 +39,11 @@
           <label for="description">Description:</label>
           <textarea id="description" formControlName="description"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"></textarea>
+            <div *ngIf="userStoryForm.controls['description'].invalid && (userStoryForm.controls['description'].dirty || userStoryForm.controls['description'].touched)">
+              <small style="color: red;" *ngIf="userStoryForm.controls['description'].errors?.['required']">description is required</small>
+              <small style="color: red;" *ngIf="userStoryForm.controls['description'].errors?.['minLength']">description must be at least 5 characters long.</small>
+              <small style="color: red;" *ngIf="userStoryForm.controls['description'].errors?.['maxLength']">description cannot be more than 5 characters long.</small>
+            </div>
         </div>
         <div>
           <label for="comments">Comments:</label>
@@ -46,4 +62,3 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>

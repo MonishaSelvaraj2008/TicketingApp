@@ -97,11 +97,12 @@ namespace Assignment.Controllers
         [HttpPut]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> UpdateBug([FromBody] UpdateBugCommand updateBugCommand)
+        public async Task<IActionResult> UpdateBug([FromBody] UpdateBugDTO updateBugDTO)
         {
             try
             {
-                var response = await _mediator.Send(updateBugCommand);
+                var command = new UpdateBugCommand(updateBugDTO);
+                var response = await _mediator.Send(command);
                 return StatusCode((int)HttpStatusCode.Created, response);
             }
             catch (InvalidRequestBodyException ex)
@@ -113,6 +114,7 @@ namespace Assignment.Controllers
                 });
             }
         }
+
 
     }
 }

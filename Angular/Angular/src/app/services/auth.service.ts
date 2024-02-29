@@ -31,6 +31,11 @@ export class AuthService {
       return this.httpClients.get<any[]>(this.loginAddress+'/api/User');
     }
 
+    getUserById(id:any) : Observable<any>
+    {
+      return this.httpClients.get<any>(this.loginAddress +`/api/User/UserId?UserId=${id}`)
+    }
+
  
     logout()
     {

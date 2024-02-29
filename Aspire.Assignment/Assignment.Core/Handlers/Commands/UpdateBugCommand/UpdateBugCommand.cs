@@ -11,7 +11,11 @@ namespace Assignment.Core.Handlers.Commands
 {
     public class UpdateBugCommand : IRequest<int>
     {
-        public UpdateBugDTO? Model { get; set;}
-    
+        public UpdateBugDTO? Model { get;}
+
+        public UpdateBugCommand(UpdateBugDTO UpdateBugDTO){
+            this.Model = UpdateBugDTO;
+        }
+
     }
 }
