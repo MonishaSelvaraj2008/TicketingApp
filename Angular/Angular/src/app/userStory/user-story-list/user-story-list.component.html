@@ -1,0 +1,16 @@
+<div *ngIf="values.length > 0; else noUserStories">
+    <ol style="--length: 5" role="list" *ngFor="let data of values" >
+        <div>
+            <li style="--i: {{data.id}} "><h3>{{data.id}}</h3>
+                <p>{{data.responsible}}&nbsp; {{user}}</p>
+                <p>{{data.description}}</p>
+                <p>Status Id: {{data.statusId}}</p>
+            </li>
+        </div>
+       
+    </ol>
+</div>
+ 
+<ng-template #noUserStories>
+    <p>No user stories found.</p>
+  </ng-template>

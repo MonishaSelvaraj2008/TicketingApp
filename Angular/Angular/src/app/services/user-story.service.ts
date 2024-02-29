@@ -32,5 +32,10 @@ export class UserStoryService {
   {
     return this.http.put(`${this.apiBaseAddress}/api/UserStory`, updateUserStory);
   }
+
+  getUserStoryList(id:any)
+  {
+    return this.http.get<UserStory[]>(`https://localhost:5001/api/UserStory?CreatedBy=${id}`)
+  }
 }
 

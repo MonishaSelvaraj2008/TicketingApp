@@ -27,7 +27,7 @@ namespace Assignment.Core.Handlers.Queries
                 throw new EntityNotFoundException($"No User found of Id: " + request.UserId);
             }
 
-            return _mapper.Map<CreateUsersDTO>(user);
+            return _mapper.Map<CreateUsersDTO>(user);//user is the instance of User, and AutoMapper will map properties from this User object to properties in a new instance of CreateUsersDTO
         }
     }
 }
