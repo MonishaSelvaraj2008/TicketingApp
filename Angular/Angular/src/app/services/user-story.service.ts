@@ -24,13 +24,17 @@ export class UserStoryService {
 
   getUserStoryById(id:number) 
   {
-    //https://localhost:5001/api/UserStory/UserStoryId?UserStoryId=12
     return this.http.get<any>(`${this.apiBaseAddress}/api/UserStory/UserStoryId?UserStoryId=${id}`);
   }
 
   updateUserStory(updateUserStory:any)
   {
     return this.http.put(`${this.apiBaseAddress}/api/UserStory`, updateUserStory);
+  }
+
+  getUserStoryList(id:any)
+  {
+    return this.http.get<UserStory[]>(`https://localhost:5001/api/UserStory?CreatedBy=${id}`);
   }
 }
 

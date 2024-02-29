@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Assignment.Contracts.Data.Entities;
 using Assignment.Contracts.DTO;
 using Assignment.Core.Exceptions;
+using Assignment.Core.Handlers.Queries;
 using Assignment.Providers.Handlers.Commands;
 using Assignment.Providers.Handlers.Queries;
 using MediatR;
@@ -99,6 +100,26 @@ namespace Assignment.Controllers
                 {
                     IsSuccess = false,
                     Errors = ex.Errors
+                });
+            }
+        }
+
+        [HttpGet("UserId")]
+        [ProducesResponseType(typeof(CreateUsersDTO), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetUserById([FromQuery] GetUserByIdQuery getUserByIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getUserByIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
                 });
             }
         }

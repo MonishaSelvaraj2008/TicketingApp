@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-
+ 
 namespace Assignment.Controllers
 {
     [Route("api/[controller]")]
@@ -32,12 +32,32 @@ namespace Assignment.Controllers
             _mediator = mediator;
             _configuration = configuration;
         }
-
+ 
        [HttpGet]
         public async Task<IActionResult> GetAsync(){
             var query= new GetStatusQuery();
             var response= await _mediator.Send(query);
             return Ok(response);
+        }
+ 
+        [HttpGet("StatusId")]
+        [ProducesResponseType(typeof(StatusDTO), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetStatusById([FromQuery] GetStatusByIdQuery getStatusByIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getStatusByIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
         }
     }
 }

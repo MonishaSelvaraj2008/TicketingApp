@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CreateCustomerSupportComponent } from './customerSupport/create-customer-support/create-customer-support.component';
 import { UpdateBugComponent } from './bug/create-bug/update-bug/update-bug.component';
+import { UserStoryListComponent } from './user-story-list/user-story-list.component';
+import { UserStoryDescriptionComponent } from './userStory/user-story-description/user-story-description.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { UpdateBugComponent } from './bug/create-bug/update-bug/update-bug.compo
     UpdateUserStoryComponent,
     CreateCustomerSupportComponent,
     UpdateBugComponent,
+    UserStoryListComponent,
+    UserStoryDescriptionComponent,
    ],
   imports: [
     BrowserModule,
