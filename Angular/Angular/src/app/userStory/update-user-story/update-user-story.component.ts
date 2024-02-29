@@ -32,8 +32,8 @@ export class UpdateUserStoryComponent implements OnInit {
       statusId: ['', Validators.required],
       responsible: ['', Validators.required],
       storyPoint: ['', Validators.required],
-      acceptanceCriteria: [''],
-      description: [''],
+       acceptanceCriteria: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)] ],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)] ],
       comments: [''],
       createdBy: ['', Validators.required],
     });
