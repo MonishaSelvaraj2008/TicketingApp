@@ -39,7 +39,6 @@ namespace Assignment.Controllers
             var response= await _mediator.Send(query);
             return Ok(response);
         }
- 
         [HttpGet("StatusId")]
         [ProducesResponseType(typeof(StatusDTO), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]

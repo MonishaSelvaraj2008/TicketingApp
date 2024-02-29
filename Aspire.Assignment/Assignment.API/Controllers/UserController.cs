@@ -123,27 +123,5 @@ namespace Assignment.Controllers
                 });
             }
         }
-
- 
-        // [HttpGet("getUsers")]
-        // [ProducesResponseType(typeof(CreateUsersDTO), (int)HttpStatusCode.OK)]
-        // [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        // public async Task<IActionResult> GetUser()
-        // {
-        //     try
-        //     {
-        //         var query = new GetUserQuery();
-        //         var response = await _mediator.Send(query);
-        //         return Ok(response);
-        //     }
-        //     catch (EntityNotFoundException ex)
-        //     {
-        //         return NotFound(new BaseResponseDTO
-        //         {
-        //             IsSuccess = false,
-        //             Errors = new string[] { ex.Message }
-        //         });
-        //     }
-        // }
     }
 }
