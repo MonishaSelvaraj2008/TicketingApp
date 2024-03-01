@@ -13,9 +13,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
 
-$gr-1:linear-gradient(170deg,rgb(55, 185, 183) 0%, rgb(55, 185, 183) 100%);
-$gr-2:linear-gradient(170deg, rgb(55, 185, 183) 0%, rgb(55, 185, 183) 100%);
-$gr-3:linear-gradient(170deg, rgb(55, 185, 183) 0%, rgb(55, 185, 183) 100%);
+$gr-1:linear-gradient(170deg,transparent 0%, rgb(55, 185, 183) 100%);
+$gr-2:linear-gradient(170deg, transparent 0%, rgb(55, 185, 183) 100%);
+$gr-3:linear-gradient(170deg, transparent 0%, rgb(55, 185, 183) 100%);
 
 .gr-1{background: $gr-1;}
 .gr-2{background: $gr-2;}     ;
@@ -124,52 +124,16 @@ $gr-3:linear-gradient(170deg, rgb(55, 185, 183) 0%, rgb(55, 185, 183) 100%);
 }
 .col{
   padding-bottom: 10px;
-
-  background-image: url(https://cdn.dribbble.com/users/4781516/screenshots/10796279/media/04eb24250e23400dc0162080a231b70c.gif);
-
+  background-repeat: no-repeat;
+  background-image: url(https://cdn.dribbble.com/users/4781516/screenshots/10796279/media/04eb24250e23400dc0162080a231b70c.gif );
+  background-size: cover;
 }
 
 
-
-.sidebar{
-  position:relative;
-  top:0;
-  width:200px;
-  height:100%;
-  box-shadow:2px 2px 3px 3px #ccc;
-  box-sizing:border-box;
-  padding:20px 30px;
-  background:white;
+.txt{
+  color: #8347ad;
 }
-.sidebar .menu a{
-  display:block;
-  margin-bottom:10px;
-  font-size:1.2rem;
-  text-decoration:none;
-  color:black;
-}
-.close-icon{
-  position:absolute;
-  right:15px;
-  top:10px;
-  text-decoration:none;
-  font-size:1.4rem;
-}
-.open-icon{
-  position:absolute;
-  left:0px;
-  top:10px;
-  text-decoration:none;
-  font-size:1.8rem;
-  font-weight:800;
-  padding:2px 5px;
-  box-shadow:1px 1px 1px 1px #ccc;
-}
-.hide{
-  transition:left 0.8s linear;
-  left:-210px;
-}
-.show{
-  transition:left 0.8s linear;
-  left:0px;
+.fs-5
+{
+  color: #8347ad;
 }

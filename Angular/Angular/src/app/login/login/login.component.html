@@ -1,52 +1,51 @@
-<br><br><br><br>
-<section class="vh-100">
-  <div class="container-fluid h-custom">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-          class="img-fluid" alt="Sample image">
-      </div><br><br>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1"><br><br>
-        <form [formGroup]="login">
-         
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" formControlName="email" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" />
-              <div *ngIf="login.controls['email'].invalid && (login.controls['email'].dirty || login.controls['email'].touched)">
-                <small style="color: red;" *ngIf="login.controls['email'].errors?.['required']">Email is required</small>
-                <small style="color: red;" *ngIf="login.controls['email'].errors?.['pattern']">Invalid email format. Please enter a valid email.</small>
-                <small style="color: red;" *ngIf="login.controls['email'].errors?.['minLength']">Email must be at least 19 characters long.</small>
-                <small style="color: red;" *ngIf="login.controls['email'].errors?.['maxLength']">Email cannot be more than 33 characters long.</small>
-              </div>
+<div class="container-fluid h-75">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-9 col-lg-6 col-xl-5">
+      <img src="https://img.freepik.com/free-vector/user-verification-unauthorized-access-prevention-private-account-authentication-cyber-security-people-entering-login-password-safety-measures_335657-3530.jpg?size=626&ext=jpg&ga=GA1.1.1664188365.1707817581&semt=sph" class="img-fluid"
+        alt="Sample image">
+    </div>
+    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+      <form [formGroup]="login">
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="email" id="form3Example3" formControlName="email" class="form-control form-control-lg"
+            placeholder="Enter a valid email address" />
+          <div
+            *ngIf="login.controls['email'].invalid && (login.controls['email'].dirty || login.controls['email'].touched)">
+            <small style="color: red;" *ngIf="login.controls['email'].errors?.['required']">Email is required</small>
+            <small style="color: red;" *ngIf="login.controls['email'].errors?.['pattern']">Invalid email format. Please
+              enter a valid email.</small>
+            <small style="color: red;" *ngIf="login.controls['email'].errors?.['minLength']">Email must be at least 19
+              characters long.</small>
+            <small style="color: red;" *ngIf="login.controls['email'].errors?.['maxLength']">Email cannot be more than
+              33 characters long.</small>
           </div>
- 
-          <!-- Password input -->
-          <div class="form-outline mb-3">
-            <input type="password" id="form3Example4" formControlName="password" class="form-control form-control-lg"
-              placeholder="Enter password" />
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-3">
+          <input type="password" id="form3Example4" formControlName="password" class="form-control form-control-lg"
+            placeholder="Enter password" />
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <!-- Checkbox -->
+          <div class="form-check mb-0">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+            <label class="form-check-label" for="form2Example3">
+              Remember me
+            </label>
           </div>
- 
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
-            </div>
-            <a href="#!" class="text-body">Forgot password?</a>
-          </div>
- 
-          <div class="text-center text-lg-start mt-2 pt-2">
-            <button type="button" class="btn btn-primary btn-lg" (click)="userLogin()"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-              <!-- <br><br><br><a href="#!" class="text-body">Back to Home Page</a> -->
-          </div>
- 
-        </form>
-      </div>
+          <a mat-button routerLink="/ForgotPassword" routerLinkActive="mat-accent">Forgot Password?</a>
+        </div>
+
+        <div class="text-center text-lg-start mt-2 pt-2">
+          <button type="button" class="btn btn-primary btn-lg" (click)="userLogin()">Login</button>
+        </div>
+      </form>
     </div>
   </div>
-</section>
- 
+</div>
+<br>
+<br>

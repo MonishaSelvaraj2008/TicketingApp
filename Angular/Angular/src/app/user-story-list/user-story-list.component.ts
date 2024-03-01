@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStoryService } from '../services/user-story.service';
 import { AuthService } from '../services/auth.service';
-import { Tokenresponse } from '../interface/TokenResponse';
 
 @Component({
   selector: 'app-user-story-list',
