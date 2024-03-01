@@ -13,7 +13,7 @@ namespace Assignment
         {
             var builder = CreateHostBuilder(args).Build();
 
-            using var scope = builder.Services.CreateScope();
+            using var scope = builder.Services.CreateScope(); //creates scope for DI
             var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
             if (db.Database.GetPendingMigrations().Any())
             {

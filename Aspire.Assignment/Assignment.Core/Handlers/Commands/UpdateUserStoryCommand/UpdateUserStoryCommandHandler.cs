@@ -28,8 +28,8 @@ namespace Assignment.Core.Handlers.Commands
             var userStory = request.Model;
             var _userStory = await Task.FromResult(_repository.UserStory.Get(userStory.Id));
             var olduserStory = _mapper.Map<UpdateUserStoryDTO>(_userStory);
-            if(userStory.Equals(olduserStory)){
-                throw new NotChangedException("No Changes is made to update");
+             if(_repository.UserStory.EqualUserStory(userStory, olduserStory)){
+                throw new NotChangedException();
             }
             var result = _validator.Validate(userStory);
             if (!result.IsValid)

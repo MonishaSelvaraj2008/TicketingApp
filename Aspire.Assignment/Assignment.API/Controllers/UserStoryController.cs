@@ -32,45 +32,6 @@ namespace Assignment.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<UserStory>), (int)HttpStatusCode.OK)]
-        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetUserStoryByUserId([FromQuery]GetUserStoryByUserIdQuery getUserStoryByUserIdQuery)
-        {
-            try
-            {
-                var response = await _mediator.Send(getUserStoryByUserIdQuery);
-                return Ok(response);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                return NotFound(new BaseResponseDTO
-                {
-                    IsSuccess = false,
-                    Errors = new string[] { ex.Message }
-                });
-            }
-        }
-
-        [HttpGet("UserStoryId")]
-        [ProducesResponseType(typeof(UserStoryDTO), (int)HttpStatusCode.OK)]
-        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetUserStoryById([FromQuery] GetUserStoryByIdQuery getUserStoryByIdQuery)
-        {
-            try
-            {
-                var response = await _mediator.Send(getUserStoryByIdQuery);
-                return Ok(response);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                return NotFound(new BaseResponseDTO
-                {
-                    IsSuccess = false,
-                    Errors = new string[] { ex.Message }
-                });
-            }
-        }
 
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
@@ -110,6 +71,46 @@ namespace Assignment.Controllers
                 {
                     IsSuccess = false,
                     Errors = ex.Errors
+                });
+            }
+        }
+        
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<UserStory>), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetUserStoryByUserId([FromQuery]GetUserStoryByUserIdQuery getUserStoryByUserIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getUserStoryByUserIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
+        }
+        
+        [HttpGet("UserStoryId")]
+        [ProducesResponseType(typeof(UserStoryDTO), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetUserStoryById([FromQuery] GetUserStoryByIdQuery getUserStoryByIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getUserStoryByIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
                 });
             }
         }

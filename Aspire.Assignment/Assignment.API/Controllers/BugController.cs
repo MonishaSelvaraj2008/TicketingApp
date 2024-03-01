@@ -33,46 +33,7 @@ namespace Assignment.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Bug>), (int)HttpStatusCode.OK)]
-        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetBugByUserId([FromQuery]GetBugByUserIdQuery getBugByUserIdQuery)
-        {
-            try
-            {
-                var response = await _mediator.Send(getBugByUserIdQuery);
-                return Ok(response);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                return NotFound(new BaseResponseDTO
-                {
-                    IsSuccess = false,
-                    Errors = new string[] { ex.Message }
-                });
-            }
-        }
-
-        [HttpGet("UserId")]
-        [ProducesResponseType(typeof(BugDTO), (int)HttpStatusCode.OK)]
-        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetBugById([FromQuery] GetBugByIdQuery getBugByIdQuery)
-        {
-            try
-            {
-                var response = await _mediator.Send(getBugByIdQuery);
-                return Ok(response);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                return NotFound(new BaseResponseDTO
-                {
-                    IsSuccess = false,
-                    Errors = new string[] { ex.Message }
-                });
-            }
-        }
-
+        
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
@@ -114,6 +75,47 @@ namespace Assignment.Controllers
                 });
             }
         }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Bug>), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetBugByUserId([FromQuery]GetBugByUserIdQuery getBugByUserIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getBugByUserIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
+        }
+
+        [HttpGet("BugId")]
+        [ProducesResponseType(typeof(BugDTO), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetBugById([FromQuery] GetBugByIdQuery getBugByIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getBugByIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
+        }
+
 
 
     }

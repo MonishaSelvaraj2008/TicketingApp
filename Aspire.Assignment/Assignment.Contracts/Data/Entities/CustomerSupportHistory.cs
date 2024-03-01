@@ -12,14 +12,16 @@ public class CustomerSupportHistory : BaseEntity
     
     [Column(TypeName = "int")]
     
-     [ForeignKey("CustomerSupport")]
+    [ForeignKey("CustomerSupport")]
     public int CustomerSupportId { get; set;}
  
     [Column(TypeName = "varchar(250)")]
     public string Details{ get; set; }
     [Column(TypeName = "int" )]
-    public int Responsible { get; set;}    
- 
+    public int Responsible { get; set;}  
+
+    [ForeignKey("CustomerDetails")]
+    public int CustomerId { get; set;}   
  
     [Column(TypeName = "int")]
     public int Version{ get; set; }
@@ -30,6 +32,7 @@ public class CustomerSupportHistory : BaseEntity
     public int StatusId { get; set; }
 
     public CustomerSupport CustomerSupport { get; set; }
+    public CustomerDetails CustomerDetails { get; set; }
 
  
 }

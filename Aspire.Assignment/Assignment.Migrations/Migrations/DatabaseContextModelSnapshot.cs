@@ -156,6 +156,9 @@ namespace Assignment.Migrations.Migrations
                     b.Property<string>("Comments")
                         .HasColumnType("varchar(250)");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CustomerSupportId")
                         .HasColumnType("int");
 
@@ -172,6 +175,8 @@ namespace Assignment.Migrations.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("CustomerSupportId");
 
@@ -408,11 +413,19 @@ namespace Assignment.Migrations.Migrations
 
             modelBuilder.Entity("Assignment.Contracts.Data.Entities.CustomerSupportHistory", b =>
                 {
+                    b.HasOne("Assignment.Contracts.Data.Entities.CustomerDetails", "CustomerDetails")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Assignment.Contracts.Data.Entities.CustomerSupport", "CustomerSupport")
                         .WithMany()
                         .HasForeignKey("CustomerSupportId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CustomerDetails");
 
                     b.Navigation("CustomerSupport");
                 });
