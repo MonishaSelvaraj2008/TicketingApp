@@ -33,7 +33,7 @@ namespace Assignment.Providers.Handlers.Commands
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             CreateUsersDTO model = request.Model;
- 
+            
             var result = _validator.Validate(model);
  
             if (!result.IsValid)

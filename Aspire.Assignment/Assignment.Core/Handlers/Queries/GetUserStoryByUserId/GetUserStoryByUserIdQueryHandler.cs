@@ -21,14 +21,12 @@ namespace Assignment.Core.Handlers.Queries
 
         public async Task<IEnumerable<UserStoryDTO>> Handle(GetUserStoryByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var userStory = await Task.FromResult(_repository.UserStory.GetAll().Where(obj=>obj.CreatedBy == request.CreatedBy));
+            var userStory = await Task.FromResult(_repository.UserStory.GetUserStory(request.CreatedBy));
             if (userStory == null)
             {
                 throw new EntityNotFoundException($"No User Story found of Id: " + request.CreatedBy);
             }
-             List<UserStory> userStories = userStory.ToList();
-             return _mapper.Map<List<UserStoryDTO>>(userStory);
-           // return userStory;
+            return userStory;
 
         }
     }

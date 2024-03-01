@@ -21,14 +21,13 @@ namespace Assignment.Core.Handlers.Queries
 
         public async Task<IEnumerable<CustomerSupportDTO>> Handle(GetCustomerSupportByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var customerSupport = await Task.FromResult(_repository.CustomerSupport.GetAll().Where(obj=>obj.CreatedBy == request.CreatedBy));
+            var customerSupport = await Task.FromResult(_repository.CustomerSupport.GetCustomerSupport(request.CreatedBy));
             if (customerSupport == null)
             {
                 throw new EntityNotFoundException($"No Customer Support found of Id: " + request.CreatedBy);
             }
-            List<CustomerSupport> customerSupports = customerSupport.ToList();
-            return _mapper.Map<List<CustomerSupportDTO>>(customerSupport);
-            //return customerSupport;
+           
+            return customerSupport;
 
         }
     }

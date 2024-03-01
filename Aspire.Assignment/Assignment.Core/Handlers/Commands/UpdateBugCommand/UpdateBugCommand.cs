@@ -6,16 +6,16 @@ using FluentValidation;
 using System.Text.Json;
 using Assignment.Core.Exceptions;
 using Microsoft.AspNetCore.Identity;
-
+ 
 namespace Assignment.Core.Handlers.Commands
 {
     public class UpdateBugCommand : IRequest<int>
     {
         public UpdateBugDTO? Model { get;}
-
+ 
         public UpdateBugCommand(UpdateBugDTO UpdateBugDTO){
             this.Model = UpdateBugDTO;
         }
-
+ 
     }
 }

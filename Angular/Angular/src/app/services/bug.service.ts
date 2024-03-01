@@ -14,17 +14,25 @@ export class BugService {
 
   constructor(private http: HttpClient) {}
 
-  postBugData(bug: Bug): Observable<any> {
-    console.log(bug);
-    return this.http.post<any>(this.apiBaseAddress+'/api/Bug',bug );
+  postBugData(bug: Bug): Observable<any>
+  {
+    return this.http.post<any>(this.apiBaseAddress+'/api/Bug', bug);
   }
   
-  putBugData(Id: any, bug: Bug): Promise<void> {
-    return this.http.put<void>(`${this.apiBaseAddress}/api/Bug/${Id}`, bug).toPromise();
+
+  getBugById(id:number) 
+  {
+    return this.http.get<any>(`${this.apiBaseAddress}/api/Bug/BugId?BugId=${id}`);
   }
 
-  getBugById(Id:number)
+  updateBug(updateBug:any)
   {
-    return this.http.get<any>(`${this.apiBaseAddress}/api/Bug/${Id}`)
+    return this.http.put(`${this.apiBaseAddress}/api/Bug`, updateBug);
+  }
+
+  getBugList(id:any)
+  {
+    return this.http.get<Bug[]>(`https://localhost:5001/api/Bug?CreatedBy=${id}`)
   }
 }
+
