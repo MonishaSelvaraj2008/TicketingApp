@@ -7,7 +7,8 @@ using System.Text.Json;
 using Assignment.Core.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using AutoMapper;
- 
+using FluentValidation.Internal;
+
 namespace Assignment.Core.Handlers.Commands
 {
     public class UpdateBugCommandHandler : IRequestHandler<UpdateBugCommand, int>
@@ -28,8 +29,9 @@ namespace Assignment.Core.Handlers.Commands
             var bug = request.Model;
             var _bug = await Task.FromResult(_repository.Bug.Get(bug.Id));
             var oldbug = _mapper.Map<UpdateBugDTO>(_bug);
-            if(bug.Equals(oldbug)){
-                throw new NotChangedException("No Changes is made to update");
+
+            if(_repository.Bug.EqualBug(bug, oldbug)){
+                throw new NotChangedException();
             }
             var result = _validator.Validate(bug);
             if (!result.IsValid)

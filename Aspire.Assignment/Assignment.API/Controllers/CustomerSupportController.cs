@@ -32,46 +32,6 @@ namespace Assignment.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<CustomerSupport>), (int)HttpStatusCode.OK)]
-        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetCustomerSupportByUserId([FromQuery]GetCustomerSupportByUserIdQuery getCustomerSupportByUserIdQuery)
-        {
-            try
-            {
-                var response = await _mediator.Send(getCustomerSupportByUserIdQuery);
-                return Ok(response);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                return NotFound(new BaseResponseDTO
-                {
-                    IsSuccess = false,
-                    Errors = new string[] { ex.Message }
-                });
-            }
-        }
-
-        [HttpGet("UserId")]
-        [ProducesResponseType(typeof(CustomerSupportDTO), (int)HttpStatusCode.OK)]
-        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetCustomerSupportById([FromQuery] GetCustomerSupportByIdQuery getCustomerSupportByIdQuery)
-        {
-            try
-            {
-                var response = await _mediator.Send(getCustomerSupportByIdQuery);
-                return Ok(response);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                return NotFound(new BaseResponseDTO
-                {
-                    IsSuccess = false,
-                    Errors = new string[] { ex.Message }
-                });
-            }
-        }
-
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
@@ -109,6 +69,46 @@ namespace Assignment.Controllers
                 {
                     IsSuccess = false,
                     Errors = ex.Errors
+                });
+            }
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<CustomerSupport>), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetCustomerSupportByUserId([FromQuery]GetCustomerSupportByUserIdQuery getCustomerSupportByUserIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getCustomerSupportByUserIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
+        }
+
+        [HttpGet("CustomerSupportId")]
+        [ProducesResponseType(typeof(CustomerSupportDTO), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetCustomerSupportById([FromQuery] GetCustomerSupportByIdQuery getCustomerSupportByIdQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getCustomerSupportByIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
                 });
             }
         }

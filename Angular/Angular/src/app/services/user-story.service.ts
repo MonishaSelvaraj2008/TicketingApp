@@ -34,11 +34,7 @@ export class UserStoryService {
 
   getUserStoryList(id:any)
   {
-<<<<<<< HEAD
     return this.http.get<UserStory[]>(`https://localhost:5001/api/UserStory?CreatedBy=${id}`)
-=======
-    return this.http.get<UserStory[]>(`https://localhost:5001/api/UserStory?CreatedBy=${id}`);
->>>>>>> 3b422124e711cdf328d5764acd36faa61acca665
   }
 }
 

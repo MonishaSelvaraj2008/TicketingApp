@@ -26,9 +26,8 @@
     
     public class NotChangedException : Exception
     {
-        public NotChangedException(string message) : base(message)
-        {
-        }
+        public string[] Errors = {"No changes to Update"};
       
+    
     }
 }

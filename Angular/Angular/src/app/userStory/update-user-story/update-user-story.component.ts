@@ -32,7 +32,7 @@ export class UpdateUserStoryComponent implements OnInit {
       statusId: ['', Validators.required],
       responsible: ['', Validators.required],
       storyPoint: ['', Validators.required],
-       acceptanceCriteria: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)] ],
+      acceptanceCriteria: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)] ],
       description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)] ],
       comments: [''],
       createdBy: ['', Validators.required],
@@ -70,8 +70,8 @@ export class UpdateUserStoryComponent implements OnInit {
   }
 
   getStatus(){
-    this.statusService.getStatus().subscribe((datas:any[])=>{
-      this.status = datas; 
+    this.statusService.getStatus().subscribe((data:any[])=>{
+      this.status = data; 
     })
   }
 

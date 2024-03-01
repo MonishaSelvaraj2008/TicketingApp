@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Bug } from 'src/app/interface/bug';
 import { BugService } from 'src/app/services/bug.service';
@@ -15,6 +15,8 @@ export class CreateBugComponent implements OnInit {
 public id = localStorage.getItem('id');
 bugForm! : FormGroup;
 user! : any[];
+regression: FormControl = new FormControl(false); // For "Yes" option
+noRegression: FormControl = new FormControl(false); // For "No" option
 
   constructor(private fb: FormBuilder, 
               private bugService: BugService,
@@ -23,10 +25,10 @@ user! : any[];
 
   ngOnInit() {
     this.bugForm = this.fb.group({
-      description: ['', Validators.required],
-      environment: ['', Validators.required],
-      priority: [''],
-      responsible : [''],
+      description:  ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)] ],
+      environment:  ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)] ],
+      priority: ['' ,  [Validators.required]],
+      responsible : ['' ,  [Validators.required]],
       regression: [false, Validators.required],
       fixedId: ['', Validators.required],
       notFixedReason: ['', Validators.required],

@@ -8,8 +8,9 @@ import { CreateBugComponent } from './bug/create-bug/create-bug.component';
 import { CreateUserStoryComponent } from './userStory/create-user-story/create-user-story.component';
 import { UpdateUserStoryComponent } from './userStory/update-user-story/update-user-story.component';
 import { RolebasedGuard } from './guards/rolebased.guard';
-import { UserStoryListComponent } from './user-story-list/user-story-list.component';
+import { UserStoryListComponent } from './userStory/user-story-list/user-story-list.component';
 import { UserStoryDescriptionComponent } from './userStory/user-story-description/user-story-description.component';
+import { UpdateBugComponent } from './bug/update-bug/update-bug.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
 
   {path: 'createUserStory', component:CreateUserStoryComponent, canActivate:[RolebasedGuard], data:{role:'user' }},
   {path: 'updateUserStory/:id', component:UpdateUserStoryComponent, canActivate:[RolebasedGuard], data:{role:'user' }},
+  {path: 'updateBug/:id', component: UpdateBugComponent, canActivate:[RolebasedGuard], data:{role:'user' }},
   {path: 'createBug', component:CreateBugComponent, canActivate:[RolebasedGuard], data:{role:'user'} },
   { path: 'userStoryList', component: UserStoryListComponent },
   { path: 'description/:id', component: UserStoryDescriptionComponent },
