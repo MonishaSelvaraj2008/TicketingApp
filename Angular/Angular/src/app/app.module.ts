@@ -17,13 +17,9 @@ import { CreateBugComponent } from './bug/create-bug/create-bug.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CreateCustomerSupportComponent } from './customerSupport/create-customer-support/create-customer-support.component';
-import { UpdateBugComponent } from './bug/create-bug/update-bug/update-bug.component';
-<<<<<<< HEAD
 import { UserStoryListComponent } from './userStory/user-story-list/user-story-list.component';
-=======
-import { UserStoryListComponent } from './user-story-list/user-story-list.component';
 import { UserStoryDescriptionComponent } from './userStory/user-story-description/user-story-description.component';
->>>>>>> 3b422124e711cdf328d5764acd36faa61acca665
+import { UpdateBugComponent } from './bug/update-bug/update-bug.component';
 
 
 @NgModule({
@@ -38,12 +34,9 @@ import { UserStoryDescriptionComponent } from './userStory/user-story-descriptio
     CreateUserStoryComponent,
     UpdateUserStoryComponent,
     CreateCustomerSupportComponent,
-    UpdateBugComponent,
     UserStoryListComponent,
-<<<<<<< HEAD
-=======
     UserStoryDescriptionComponent,
->>>>>>> 3b422124e711cdf328d5764acd36faa61acca665
+    UpdateBugComponent,
    ],
   imports: [
     BrowserModule,
