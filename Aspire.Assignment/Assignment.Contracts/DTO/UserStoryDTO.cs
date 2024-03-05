@@ -20,7 +20,6 @@ namespace Assignment.Contracts.DTO
     public int StatusId { get; set; }
     public string Status { get; set; }
     public int Version { get; set; }
-
     public string Comments { get; set; }
 
     }

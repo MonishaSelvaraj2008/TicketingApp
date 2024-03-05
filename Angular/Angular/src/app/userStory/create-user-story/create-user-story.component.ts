@@ -5,6 +5,7 @@ import { UserStory } from 'src/app/interface/userStory';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StatusService } from 'src/app/services/status.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-user-story',
@@ -20,7 +21,8 @@ export class CreateUserStoryComponent implements OnInit {
     private userStoryService: UserStoryService,
     private authService: AuthService,
     private statusService: StatusService,
-    private router: Router) { }
+    private router: Router,
+    private toastr:ToastrService) { }
 
   ngOnInit() {
     this.userStoryForm = this.fb.group({
@@ -42,16 +44,27 @@ export class CreateUserStoryComponent implements OnInit {
   }
 
 
-  submitCreateUserStoryForm() {
+  submitCreateUserStoryForm() 
+  {
     this.userStoryForm.markAllAsTouched();
-    if (this.userStoryForm.valid) {
+  
+    if (this.userStoryForm.valid) 
+    {
       const userStory: UserStory = this.userStoryForm.value;
+  
       this.userStoryService.postUserStoryData(userStory)
         .subscribe((result: any) => {
+           // Display success toast
+          this.toastr.success('Data added successfully!!!');
           localStorage.setItem("userstory", result.statusId);
           console.log('Data added successfully!!!');
           this.navigateToHomePage();
-        })
+        });
+    } 
+    else 
+    {
+      // Display a warning toast for invalid data
+      this.toastr.error('Please fill the required fields.');
     }
   }
   navigateToHomePage() {

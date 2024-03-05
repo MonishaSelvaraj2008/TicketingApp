@@ -53,7 +53,8 @@ namespace Assignment.Core.Handlers.Commands
                 NotFixedReason = _bug.NotFixedReason,
                 StatusId = _bug.StatusId,
                 Comments = _bug.Comments,
-                Version = _bug.Version
+                Version = _bug.Version,
+                AddedOn =  _bug.AddedOn
             };
             _repository.BugHistory.Add(bugHistory);
             var entity = _mapper.Map<Bug>(bug);

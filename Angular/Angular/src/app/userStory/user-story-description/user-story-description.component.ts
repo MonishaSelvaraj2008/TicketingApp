@@ -19,6 +19,7 @@ export class UserStoryDescriptionComponent implements OnInit {
 
     storyId && this.userStoryService.getUserStoryById(storyId).subscribe((result)=>
     {
+      console.log(result);
       this.details = result;
     })
 

@@ -6,6 +6,7 @@ import { UserStoryService } from 'src/app/services/user-story.service';
 import { UpdateUserStory } from 'src/app/interface/updateuserStory';
 import { AuthService } from 'src/app/services/auth.service';
 import { StatusService } from 'src/app/services/status.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-user-story',
@@ -19,12 +20,16 @@ export class UpdateUserStoryComponent implements OnInit {
   userStoryForm!: FormGroup;
   updateUserStory: any;
 
+  public id = localStorage.getItem('id');
+
 
   constructor(private fb: FormBuilder, 
               private route: ActivatedRoute,
               private updateUserStoryService: UserStoryService,
               private statusService: StatusService,
-              private authService : AuthService) { }
+              private authService : AuthService,
+              private router: Router,
+              private toast:ToastrService) { }
 
   ngOnInit() : void{
     this.userStoryForm = this.fb.group({
@@ -35,7 +40,7 @@ export class UpdateUserStoryComponent implements OnInit {
       acceptanceCriteria: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)] ],
       description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(500)] ],
       comments: [''],
-      createdBy: ['', Validators.required],
+      createdBy: [this.id, Validators.required],
     });
     this.getStatus();
     this.getResponsible();
@@ -77,11 +82,30 @@ export class UpdateUserStoryComponent implements OnInit {
 
   submitUpdateUserStoryForm() 
   {
-    const userStory:UserStory = this.userStoryForm.value;
-    this.updateUserStoryService.updateUserStory(userStory).subscribe(response=>
+    const userStory: UserStory = this.userStoryForm.value;
+  
+    this.updateUserStoryService.updateUserStory(userStory).subscribe(response => 
+    {
+      this.userStoryForm.reset();
+      this.router.navigate(['/userStoryList']);
+      console.log(response);
+      this.toast.success('Success', 'Data has been updated successfully.');
+      console.log('User Story Updated...');
+    },
+    error => 
+    {
+      console.error(error);
+  
+      if (error.status === 500) 
       {
-        console.log(response);
-        console.log("User Story Updated...");
-      })
-  }
+        // Assuming 409 is the status code for "Conflict" when data already exists
+        this.toast.warning('No Changes To Update', 'Warning');
+      } 
+      else 
+      {
+        this.toast.error('Error', 'An error occurred while updating the user story.');
+      }
+    }
+  );
+}
 }
