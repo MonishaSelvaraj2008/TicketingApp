@@ -48,7 +48,8 @@ namespace Assignment.Core.Handlers.Commands
                 Responsible = _userStory.Responsible,
                 StatusId = _userStory.StatusId,
                 Comments = _userStory.Comments,
-                Version = _userStory.Version
+                Version = _userStory.Version,
+                AddedOn =  _userStory.AddedOn
             };
             _repository.UserStoryHistory.Add(userStoryHistory);
             var entity = _mapper.Map<UserStory>(userStory);

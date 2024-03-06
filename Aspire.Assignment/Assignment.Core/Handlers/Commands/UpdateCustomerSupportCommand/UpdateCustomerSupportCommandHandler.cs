@@ -49,7 +49,8 @@ namespace Assignment.Core.Handlers.Commands
                 Responsible = _customerSupport.Responsible,
                 StatusId = _customerSupport.StatusId,
                 Comments = _customerSupport.Comments,
-                Version = _customerSupport.Version
+                Version = _customerSupport.Version,
+                AddedOn =  _customerSupport.AddedOn
             };
             _repository.CustomerSupportHistory.Add(customerSupportHistory);
             var entity = _mapper.Map<CustomerSupport>(customerSupport);

@@ -12,7 +12,7 @@ namespace Assignment.Core.Data.Repositories
         {
             _context = context;
         }
-        public IEnumerable<BugDTO> GetBug(int CreatedBy)
+        public IEnumerable<BugDTO> GetBugByCreatedBy(int CreatedBy)
         {
             using (_context)
             {
@@ -27,7 +27,7 @@ namespace Assignment.Core.Data.Repositories
                     Environment = Bug.Environment,
                     Priority = Bug.Priority,
                     Responsible = Bug.Responsible,
-                    ResponsibleName = User.FirstName+User.LastName,
+                    ResponsibleName = User.FirstName+" "+User.LastName,
                     Regression = Bug.Regression,
                     FixedID = Bug.FixedID,
                     NotFixedReason = Bug.NotFixedReason,
@@ -35,7 +35,8 @@ namespace Assignment.Core.Data.Repositories
                     StatusId = Bug.StatusId,
                     Status = Status.State,
                     Version = Bug.Version,
-                    Comments = Bug.Comments
+                    Comments = Bug.Comments,
+                    AddedOn = Bug.AddedOn
                 };
  
             return query.ToList();
@@ -49,9 +50,71 @@ namespace Assignment.Core.Data.Repositories
               Bug.Responsible == OldBug.Responsible && Bug.Regression==OldBug.Regression &&
               Bug.FixedID.Equals(OldBug.FixedID) && Bug.StatusId == OldBug.StatusId &&
               Bug.NotFixedReason.Equals(OldBug.NotFixedReason) && Bug.Comments.Equals(OldBug.Comments)){
-                result = true;
+              result = true;
             }
             return result;
         }
+
+        public BugDTO GetBugById(int BugId)
+        {
+            using (_context)
+            {
+            var query = from Bug in _context.Bug
+                join User in _context.Users on Bug.Responsible equals User.Id
+                join Status in _context.Status on Bug.StatusId equals Status.Id
+                where Bug.Id == BugId
+                select new BugDTO
+                {
+                   Id = Bug.Id,
+                    Description = Bug.Description,
+                    Environment = Bug.Environment,
+                    Priority = Bug.Priority,
+                    Responsible = Bug.Responsible,
+                    ResponsibleName = User.FirstName+User.LastName,
+                    Regression = Bug.Regression,
+                    FixedID = Bug.FixedID,
+                    NotFixedReason = Bug.NotFixedReason,
+                    CreatedBy = Bug.CreatedBy,
+                    StatusId = Bug.StatusId,
+                    Status = Status.State,
+                    Version = Bug.Version,
+                    Comments = Bug.Comments,
+                    AddedOn = Bug.AddedOn
+                };
+ 
+            return query.FirstOrDefault();
+            }
+        }
+        public IEnumerable<BugDTO> GetBugByResponsible(int Responsible)
+        {
+            using (_context)
+            {
+            var query = from Bug in _context.Bug
+                join User in _context.Users on Bug.CreatedBy equals User.Id
+                join Status in _context.Status on Bug.StatusId equals Status.Id
+                where Bug.Responsible == Responsible
+                select new BugDTO
+                {
+                    Id = Bug.Id,
+                    Description = Bug.Description,
+                    Environment = Bug.Environment,
+                    Priority = Bug.Priority,
+                    Responsible = Bug.Priority,
+                    Regression = Bug.Regression,
+                    FixedID = Bug.FixedID,
+                    NotFixedReason = Bug.NotFixedReason,
+                    CreatedBy = Bug.CreatedBy,
+                    CreatedByName = User.FirstName+" "+User.LastName,
+                    StatusId = Bug.StatusId,
+                    Status = Status.State,
+                    Version = Bug.Version,
+                    Comments = Bug.Comments,
+                    AddedOn = Bug.AddedOn
+                };
+ 
+            return query.ToList();
+            }
+        }
+
     }
 }

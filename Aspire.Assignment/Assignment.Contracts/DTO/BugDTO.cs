@@ -18,10 +18,12 @@ namespace Assignment.Contracts.DTO
     public string FixedID{ get; set; }
     public string NotFixedReason{ get; set; }
     public int CreatedBy{ get; set; }
+    public string CreatedByName{ get; set; }
     public int StatusId { get; set; }
     public string Status { get; set; }
     public int Version{ get; set; }
     public string Comments { get; set; }
+    public DateTime AddedOn { get; set; }
     }
 }
  
