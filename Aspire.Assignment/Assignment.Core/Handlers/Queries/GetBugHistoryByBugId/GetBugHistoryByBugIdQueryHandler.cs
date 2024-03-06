@@ -21,15 +21,14 @@ namespace Assignment.Core.Handlers.Queries
 
         public async Task<IEnumerable<BugHistoryDTO>> Handle(GetBugHistoryByBugIdQuery request, CancellationToken cancellationToken)
         {
-            var bugHistory = await Task.FromResult(_repository.BugHistory.GetAll().Where(obj => obj.BugId == request.BugId));
+            var bugHistory = await Task.FromResult(_repository.BugHistory.GetBugHistory(request.BugId));
 
             if (bugHistory == null)
             {
-                throw new EntityNotFoundException($"No User Story found of Id: " + request.BugId);
+                throw new EntityNotFoundException($"No Bug History  found of Id: " + request.BugId);
             }
 
-            List<BugHistory> bugHistories = bugHistory.ToList();
-            return _mapper.Map<List<BugHistoryDTO>>(bugHistory);
+            return bugHistory;
         }
     }
 }

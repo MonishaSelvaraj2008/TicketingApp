@@ -14,7 +14,6 @@ namespace Assignment.Core.Handlers.Commands
     {
         private readonly IUnitOfWork _repository;
         private readonly IValidator<CreateBugDTO> _validator;
-
         private readonly IMapper _mapper;
 
         public CreateBugCommandHandler(IUnitOfWork repository, IValidator<CreateBugDTO> validator, IMapper mapper)

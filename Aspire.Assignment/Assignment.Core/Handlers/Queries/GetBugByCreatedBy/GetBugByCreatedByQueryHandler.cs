@@ -7,20 +7,20 @@ using AutoMapper;
 namespace Assignment.Core.Handlers.Queries
 {
  
-    public class GetBugByUserIdQueryHandler : IRequestHandler<GetBugByUserIdQuery, IEnumerable<BugDTO>>
+    public class GetBugByCreatedByQueryHandler : IRequestHandler<GetBugByCreatedByQuery, IEnumerable<BugDTO>>
     {
         private readonly IUnitOfWork _repository;
         private readonly IMapper _mapper;
  
-        public GetBugByUserIdQueryHandler(IUnitOfWork repository, IMapper mapper)
+        public GetBugByCreatedByQueryHandler(IUnitOfWork repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
  
-        public async Task<IEnumerable<BugDTO>> Handle(GetBugByUserIdQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<BugDTO>> Handle(GetBugByCreatedByQuery request, CancellationToken cancellationToken)
         {
-            var bug = await Task.FromResult(_repository.Bug.GetBug(request.CreatedBy));
+            var bug = await Task.FromResult(_repository.Bug.GetBugByCreatedBy(request.CreatedBy));
             if (bug == null)
             {
                 throw new EntityNotFoundException($"No Bug found of Id: " + request.CreatedBy);

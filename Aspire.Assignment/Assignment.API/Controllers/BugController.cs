@@ -76,14 +76,33 @@ namespace Assignment.Controllers
             }
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Bug>), (int)HttpStatusCode.OK)]
+        [HttpGet("BugId")]
+        [ProducesResponseType(typeof(BugDTO), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetBugByUserId([FromQuery]GetBugByUserIdQuery getBugByUserIdQuery)
+        public async Task<IActionResult> GetBugById([FromQuery] GetBugByIdQuery getBugByIdQuery)
         {
             try
             {
-                var response = await _mediator.Send(getBugByUserIdQuery);
+                var response = await _mediator.Send(getBugByIdQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
+        }
+        [HttpGet("CreatedBy")]
+        [ProducesResponseType(typeof(IEnumerable<Bug>), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetBugByCreatedBy([FromQuery]GetBugByCreatedByQuery getBugByCreatedByQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getBugByCreatedByQuery);
                 return Ok(response);
             }
             catch (EntityNotFoundException ex)
@@ -96,14 +115,14 @@ namespace Assignment.Controllers
             }
         }
 
-        [HttpGet("BugId")]
-        [ProducesResponseType(typeof(BugDTO), (int)HttpStatusCode.OK)]
+        [HttpGet("Responsible")]
+        [ProducesResponseType(typeof(IEnumerable<Bug>), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetBugById([FromQuery] GetBugByIdQuery getBugByIdQuery)
+        public async Task<IActionResult> GetBugByResponsible([FromQuery]GetBugByResponsibleQuery getBugByResponsibleQuery)
         {
             try
             {
-                var response = await _mediator.Send(getBugByIdQuery);
+                var response = await _mediator.Send(getBugByResponsibleQuery);
                 return Ok(response);
             }
             catch (EntityNotFoundException ex)
