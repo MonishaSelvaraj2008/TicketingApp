@@ -14,7 +14,7 @@ namespace Assignment.Core.Data.Repositories
         {
             _context = context;
         }
-        public IEnumerable<UserStoryDTO> GetUserStory(int CreatedBy)
+        public IEnumerable<UserStoryDTO> GetUserStoryByCreatedBy(int CreatedBy)
         {
             using (_context)
             {
@@ -34,7 +34,8 @@ namespace Assignment.Core.Data.Repositories
                     StatusId = UserStory.StatusId,
                     Status = Status.State,
                     Version = UserStory.Version,
-                    Comments = UserStory.Comments
+                    Comments = UserStory.Comments,
+                    AddedOn = UserStory.AddedOn
                 };
  
             return query.ToList();
@@ -68,14 +69,72 @@ namespace Assignment.Core.Data.Repositories
                     Responsible = UserStory.Responsible,
                     ResponsibleName = User.FirstName+" "+User.LastName,
                     CreatedBy = UserStory.CreatedBy,
+                    //CreatedByName = User.FirstName+" "+User.LastName,
+                    StatusId = UserStory.StatusId,
+                    Status = Status.State,
+                    Version = UserStory.Version,
+                    Comments = UserStory.Comments,
+                    AddedOn = UserStory.AddedOn
+                };
+ 
+            return query.FirstOrDefault();
+            }
+        }
+        public IEnumerable<UserStoryDTO> GetUserStoryByResponsible(int Responsible)
+        {
+            using (_context)
+            {
+            var query = from UserStory in _context.UserStory
+                join User in _context.Users on UserStory.CreatedBy equals User.Id
+                join Status in _context.Status on UserStory.StatusId equals Status.Id
+                where UserStory.Responsible == Responsible
+                select new UserStoryDTO
+                {
+                    Id = UserStory.Id,
+                    Description = UserStory.Description,
+                    AcceptanceCriteria = UserStory.AcceptanceCriteria,
+                    StoryPoint = UserStory.StoryPoint,
+                    Responsible = UserStory.Responsible,
+                    //ResponsibleName = User.FirstName+" "+User.LastName,
+                    CreatedBy = UserStory.CreatedBy,
+                    CreatedByName = User.FirstName+" "+User.LastName,
+                    StatusId = UserStory.StatusId,
+                    Status = Status.State,
+                    Version = UserStory.Version,
+                    Comments = UserStory.Comments,
+                    AddedOn = UserStory.AddedOn
+                };
+ 
+            return query.ToList();
+            }
+        }
+
+        public IEnumerable<UserStoryDTO> GetUserStory(int CreatedBy)
+        {
+            using (_context)
+            {
+            var query = from UserStory in _context.UserStory
+                join User in _context.Users on UserStory.Responsible equals User.Id
+                join Status in _context.Status on UserStory.StatusId equals Status.Id
+                where UserStory.CreatedBy == CreatedBy
+                select new UserStoryDTO
+                {
+                    Id = UserStory.Id,
+                    Description = UserStory.Description,
+                    AcceptanceCriteria = UserStory.AcceptanceCriteria,
+                    StoryPoint = UserStory.StoryPoint,
+                    Responsible = UserStory.Responsible,
+                    ResponsibleName = User.FirstName+" "+User.LastName,
+                    CreatedBy = UserStory.CreatedBy,
                     StatusId = UserStory.StatusId,
                     Status = Status.State,
                     Version = UserStory.Version,
                     Comments = UserStory.Comments
                 };
  
-            return query.FirstOrDefault();
+            return query.ToList();
             }
         }
+        
     }
 }
