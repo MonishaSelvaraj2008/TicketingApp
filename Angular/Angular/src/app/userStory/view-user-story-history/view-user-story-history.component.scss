@@ -1,0 +1,20 @@
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    max-width: 200px; 
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: 1px solid #e2e8f0;
+  }
+
+  a.active {
+    background-color: #4299e1;
+    color: #fff;
+  }
+  

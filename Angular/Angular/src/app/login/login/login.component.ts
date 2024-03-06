@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/interface/user';
 import { AuthService } from 'src/app/services/auth.service';
  
@@ -12,7 +13,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
  
-  constructor(private auth:AuthService, private formBuilder:FormBuilder, private route:Router) { }
+  constructor(private auth:AuthService, 
+              private formBuilder:FormBuilder, 
+              private route:Router,
+              private toast:ToastrService) { }
  
   login!:FormGroup;
  
@@ -27,13 +31,13 @@ export class LoginComponent implements OnInit {
       password:['', [Validators.required, Validators.minLength(8)]]
     })
   }
- 
- 
- 
+
+
   userLogin()
   {
     this.auth.login(this.login.value.email, this.login.value.password).subscribe(response=>
     {
+      
       localStorage.setItem('token', response.accessToken);
       localStorage.setItem('id', response.id);
       localStorage.setItem('firstname', response.firstName);
@@ -44,16 +48,24 @@ export class LoginComponent implements OnInit {
      
       if(this.auth.getRole())
       {
-        alert("Login Successfully");
+        this.toast.success("Login Successfully...", this.login.value.email);
         this.route.navigate(['dashboard']);
         console.log('Login successful. Token:', JSON.stringify(response.accessToken));
       }
       else
       {
-        this.route.navigate(['']);
-        alert("!Invalid Credentials, Try again");
+        this.handleLoginError();
       }
-    })
+    },
+    error => {
+      console.error('Error during login:', error);
+      this.handleLoginError();
+    });
+  }
+
+  private handleLoginError() {
+    this.toast.error("Invalid Credentials", "Error");
+    this.route.navigate(['login']);
   }
 }
  

@@ -20,14 +20,14 @@ namespace Assignment.Core.Handlers.Queries
 
         public async Task<BugDTO> Handle(GetBugByIdQuery request, CancellationToken cancellationToken)
         {
-            var bug = await Task.FromResult(_repository.Bug.Get(request.BugId));
+            var bug = await Task.FromResult(_repository.Bug.GetBugById(request.BugId));
 
             if (bug == null)
             {
                 throw new EntityNotFoundException($"No Bug found of Id: " + request.BugId);
             }
 
-            return _mapper.Map<BugDTO>(bug);
+            return bug;
         }
     }
 }

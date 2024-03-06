@@ -7,7 +7,7 @@
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Responsible</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{details.responsible}}</dd>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{details.responsibleName}}</dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Story Point</dt>
@@ -23,7 +23,14 @@
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Status Id</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{details.statusId}}</dd>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+          <span *ngIf="details.status === 'Open' " class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">{{details.status}}</span>
+          <span *ngIf="details.status === 'In Progress' " class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm">{{details.status}}</span>
+          <span *ngIf="details.status === 'On Hold' " class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm">{{details.status}}</span>
+          <span *ngIf="details.status === 'Resolved' " class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">{{details.status}}</span>
+          <span *ngIf="details.status === 'Closed' " class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm">{{details.status}}</span>
+          <span *ngIf="details.status === 'Pending' " class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-sm">{{details.status}}</span>
+        </dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Comments</dt>
@@ -31,22 +38,22 @@
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-8 sm:gap-4 sm:px-0">
         <span class="hidden sm:block">
-            <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-purple-900 shadow-sm ring-1 ring-inset ring-purple-300 hover:bg-purple-50">
+            <a [routerLink]="['/updateUserStory',details.id]" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-purple-900 shadow-sm ring-1 ring-inset ring-purple-300 hover:bg-purple-50">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                   </svg>&nbsp;             
               Update
-            </button>
+                </a>
           </span>
       
           <span class="hidden sm:block">
-            <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-purple-900 shadow-sm ring-1 ring-inset ring-purple-300 hover:bg-purple-50">
+            <a type="button" [routerLink] ="['/viewUserStoryHistory', details.id]" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-purple-900 shadow-sm ring-1 ring-inset ring-purple-300 hover:bg-purple-50">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                   </svg>&nbsp;
                   
               Version
-            </button>
+                </a>
           </span>
       </div>
     </dl>

@@ -8,8 +8,6 @@ public class CreateBugDTO
     public int Priority{ get; set; }
     public int Responsible{ get; set; }
     public bool Regression{ get; set; }
-    public string FixedID{ get; set; }
-    public string NotFixedReason{ get; set; }
     public string Comments { get; set; }
     public int CreatedBy {get;set;}
     

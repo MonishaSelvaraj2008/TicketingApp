@@ -11,6 +11,7 @@ import { RolebasedGuard } from './guards/rolebased.guard';
 import { UserStoryListComponent } from './userStory/user-story-list/user-story-list.component';
 import { UserStoryDescriptionComponent } from './userStory/user-story-description/user-story-description.component';
 import { UpdateBugComponent } from './bug/update-bug/update-bug.component';
+import { ViewUserStoryHistoryComponent } from './userStory/view-user-story-history/view-user-story-history.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'createBug', component:CreateBugComponent, canActivate:[RolebasedGuard], data:{role:'user'} },
   { path: 'userStoryList', component: UserStoryListComponent },
   { path: 'description/:id', component: UserStoryDescriptionComponent },
+  { path: 'viewUserStoryHistory/:id', component: ViewUserStoryHistoryComponent },
   {
     path: 'createCustomerSupport', component:CreateCustomerSupportComponent, canActivate:[RolebasedGuard], data:{role:'user' }},
   {

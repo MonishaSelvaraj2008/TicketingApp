@@ -7,7 +7,6 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using Assignment.Contracts.Data.Entities;
 using Assignment.Contracts.DTO;
 using Assignment.Core.Exceptions;
 using Assignment.Core.Handlers.Commands;
@@ -17,6 +16,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Assignment.Contracts.Data.Entities;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace Assignment.Controllers
 {
@@ -32,7 +33,7 @@ namespace Assignment.Controllers
             _configuration = configuration;
         }
 
-
+        
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
@@ -40,8 +41,8 @@ namespace Assignment.Controllers
         {
             try
             {
-                var command = new CreateUserStoryCommand(createUserStoryDTO); 
-                var response = await _mediator.Send(command);
+                var createUserStoryCommand = new CreateUserStoryCommand(createUserStoryDTO);
+                var response = await _mediator.Send(createUserStoryCommand);
                 return StatusCode((int)HttpStatusCode.Created, response);
             }
             catch (InvalidRequestBodyException ex)
@@ -74,27 +75,7 @@ namespace Assignment.Controllers
                 });
             }
         }
-        
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<UserStory>), (int)HttpStatusCode.OK)]
-        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
-        public async Task<IActionResult> GetUserStoryByUserId([FromQuery]GetUserStoryByUserIdQuery getUserStoryByUserIdQuery)
-        {
-            try
-            {
-                var response = await _mediator.Send(getUserStoryByUserIdQuery);
-                return Ok(response);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                return NotFound(new BaseResponseDTO
-                {
-                    IsSuccess = false,
-                    Errors = new string[] { ex.Message }
-                });
-            }
-        }
-        
+
         [HttpGet("UserStoryId")]
         [ProducesResponseType(typeof(UserStoryDTO), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
@@ -114,6 +95,47 @@ namespace Assignment.Controllers
                 });
             }
         }
+        [HttpGet("CreatedBy")]
+        [ProducesResponseType(typeof(IEnumerable<UserStory>), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetUserStoryByCreatedBy([FromQuery]GetUserStoryByCreatedByQuery getUserStoryByCreatedByQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getUserStoryByCreatedByQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
+        }
+
+        [HttpGet("Responsible")]
+        [ProducesResponseType(typeof(IEnumerable<UserStory>), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        public async Task<IActionResult> GetUserStoryByResponsible([FromQuery]GetUserStoryByResponsibleQuery getUserStoryByResponsibleQuery)
+        {
+            try
+            {
+                var response = await _mediator.Send(getUserStoryByResponsibleQuery);
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(new BaseResponseDTO
+                {
+                    IsSuccess = false,
+                    Errors = new string[] { ex.Message }
+                });
+            }
+        }
+
+
 
     }
 }

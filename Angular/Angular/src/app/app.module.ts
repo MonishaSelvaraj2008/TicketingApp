@@ -20,7 +20,10 @@ import { CreateCustomerSupportComponent } from './customerSupport/create-custome
 import { UserStoryListComponent } from './userStory/user-story-list/user-story-list.component';
 import { UserStoryDescriptionComponent } from './userStory/user-story-description/user-story-description.component';
 import { UpdateBugComponent } from './bug/update-bug/update-bug.component';
-
+import { ViewUserStoryHistoryComponent } from './userStory/view-user-story-history/view-user-story-history.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { UpdateBugComponent } from './bug/update-bug/update-bug.component';
     UserStoryListComponent,
     UserStoryDescriptionComponent,
     UpdateBugComponent,
+    ViewUserStoryHistoryComponent   
    ],
   imports: [
     BrowserModule,
@@ -46,9 +50,12 @@ import { UpdateBugComponent } from './bug/update-bug/update-bug.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ToastrModule.forRoot({preventDuplicates: false,}),
+    MatTableModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [ToastrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

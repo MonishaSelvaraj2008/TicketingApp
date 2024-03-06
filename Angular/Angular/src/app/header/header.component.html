@@ -12,13 +12,11 @@
     <div *ngIf="!this.auth.isloggedIn()">
       <a href="#" class="d-flex align-items-center" aria-expanded="false">
         <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>&nbsp;&nbsp;
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkjzEWfMZh_o_oJ4a3ntp-ZOUwETgf1l9hkQ&usqp=CAU" alt="hugenerd" width="30" height="30" class="rounded-circle">
       </a>
     </div>
     <div *ngIf="this.auth.isloggedIn()">
       <a href="#" class="d-flex align-items-center" aria-expanded="false">
-        <a mat-button routerLink="/login" (click)="logout()" routerLinkActive="mat-accent">Welcome {{firstname}} &nbsp;&nbsp;&nbsp;&nbsp; Logout</a>&nbsp;&nbsp;  
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkjzEWfMZh_o_oJ4a3ntp-ZOUwETgf1l9hkQ&usqp=CAU" alt="hugenerd" width="30" height="30" class="rounded-circle">
+        <a mat-button routerLink="/login" (click)="logout()" routerLinkActive="mat-accent">Welcome {{firstname}}&nbsp;&nbsp;{{lastname}} &nbsp;&nbsp;&nbsp;&nbsp; Logout</a>&nbsp;&nbsp;  
       </a>
     </div>
  

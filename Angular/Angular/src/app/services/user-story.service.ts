@@ -34,7 +34,13 @@ export class UserStoryService {
 
   getUserStoryList(id:any)
   {
-    return this.http.get<UserStory[]>(`https://localhost:5001/api/UserStory?CreatedBy=${id}`)
+    return this.http.get<UserStory[]>(`${this.apiBaseAddress}/api/UserStory/CreatedBy?CreatedBy=${id}`);
+  }
+
+  getUserStoryHistory(historyId:any)
+  {
+    //https://localhost:5001/api/CustomerSupportHistory/CustomerSupportId?CustomerSupportId=1
+    return this.http.get<UserStory[]>(`${this.apiBaseAddress}/api/UserStoryHistory/UserStoryId?UserStoryId=${historyId}`);
   }
 }
 

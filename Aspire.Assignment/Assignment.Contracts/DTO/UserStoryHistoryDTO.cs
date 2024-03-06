@@ -14,7 +14,7 @@ namespace Assignment.Contracts.DTO
     public int Responsible { get; set;}    
     public int StoryPoint { get; set; }
 
-
+    public string ResponsibleName { get; set; }
     public string AcceptanceCriteria { get; set; }
 
     public string Description { get; set; }
@@ -22,10 +22,12 @@ namespace Assignment.Contracts.DTO
 
     public int CreatedBy{ get; set; }
     public int StatusId { get; set; }
+    public string Status { get; set; }
 
     public int Version { get; set; }
 
     public string Comments { get; set; }
+
 
     }
 }
