@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserStory } from 'src/app/interface/userStory';
 import { UserStoryService } from 'src/app/services/user-story.service';
-import { UpdateUserStory } from 'src/app/interface/updateuserStory';
 import { AuthService } from 'src/app/services/auth.service';
 import { StatusService } from 'src/app/services/status.service';
 import { ToastrService } from 'ngx-toastr';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-user-story',

@@ -1,0 +1,10 @@
+<div *ngIf="userstory && userstory.length > 0; else noTicketsFound">
+  <mat-list role="list" *ngFor="let story of userstory">
+    <mat-list-item role="listitem">
+      <a routerLink="['/updateUserStory', story.id]" (click)="click()">{{ story.createdByName }} - {{ story.description }} &nbsp; {{count}}</a>
+    </mat-list-item>
+  </mat-list>
+</div>
+<ng-template #noTicketsFound>
+  <p>No tickets found</p>
+</ng-template>

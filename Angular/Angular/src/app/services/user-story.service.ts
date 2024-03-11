@@ -3,8 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserStory } from '../interface/userStory';
 import { environment } from 'src/environments/environment';
-import { UpdateUserStory } from '../interface/updateuserStory';
-
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -39,8 +38,17 @@ export class UserStoryService {
 
   getUserStoryHistory(historyId:any)
   {
-    //https://localhost:5001/api/CustomerSupportHistory/CustomerSupportId?CustomerSupportId=1
     return this.http.get<UserStory[]>(`${this.apiBaseAddress}/api/UserStoryHistory/UserStoryId?UserStoryId=${historyId}`);
   }
-}
+
+  searchUserStory(CreatedBy:any, query:string)
+  {
+    return this.http.get<any[]>(`${this.apiBaseAddress}/api/UserStory?CreatedBy=${CreatedBy}&Search=${query}`);
+  }
+
+  getResponsibleData(id:any) 
+  {
+    return this.http.get<any[]>(`${this.apiBaseAddress}/api/UserStory/Responsible?Responsible=${id}`)
+    }
+  }
 

@@ -2,9 +2,7 @@ using Assignment.Contracts.Data.Entities;
 using Assignment.Contracts.Data.Repositories;
 using Assignment.Contracts.DTO;
 using Assignment.Migrations;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
-
+ 
 namespace Assignment.Core.Data.Repositories
 {
     public class UserStoryRepository : Repository<UserStory>, IUserStoryRepository
@@ -29,8 +27,8 @@ namespace Assignment.Core.Data.Repositories
                     AcceptanceCriteria = UserStory.AcceptanceCriteria,
                     StoryPoint = UserStory.StoryPoint,
                     Responsible = UserStory.Responsible,
-                    ResponsibleName = User.FirstName+" "+User.LastName,
                     CreatedBy = UserStory.CreatedBy,
+                    ResponsibleName = User.FirstName+" "+User.LastName,
                     StatusId = UserStory.StatusId,
                     Status = Status.State,
                     Version = UserStory.Version,
@@ -44,10 +42,10 @@ namespace Assignment.Core.Data.Repositories
  
         public bool EqualUserStory(UpdateUserStoryDTO UserStory,UpdateUserStoryDTO OldUserStory){
             bool result = false;
-            if(UserStory.Id==OldUserStory.Id && UserStory.Description.Equals(OldUserStory.Description) &&
-              UserStory.AcceptanceCriteria.Equals(OldUserStory.AcceptanceCriteria) && UserStory.StoryPoint==OldUserStory.StoryPoint&&
-              UserStory.Responsible == OldUserStory.Responsible && UserStory.StatusId == OldUserStory.StatusId && UserStory.Comments.Equals(OldUserStory.Comments)){
-                result = true;
+            if(UserStory.Id==OldUserStory.Id && UserStory.Description.Equals(OldUserStory.Description) && UserStory.StoryPoint.Equals(OldUserStory.StoryPoint) &&
+              UserStory.Responsible == OldUserStory.Responsible  && UserStory.StatusId == OldUserStory.StatusId &&
+             UserStory.Comments.Equals(OldUserStory.Comments)){
+              result = true;
             }
             return result;
         }
@@ -62,14 +60,13 @@ namespace Assignment.Core.Data.Repositories
                 where UserStory.Id == UserStoryId
                 select new UserStoryDTO
                 {
-                    Id = UserStory.Id,
+                   Id = UserStory.Id,
                     Description = UserStory.Description,
                     AcceptanceCriteria = UserStory.AcceptanceCriteria,
                     StoryPoint = UserStory.StoryPoint,
                     Responsible = UserStory.Responsible,
-                    ResponsibleName = User.FirstName+" "+User.LastName,
                     CreatedBy = UserStory.CreatedBy,
-                    //CreatedByName = User.FirstName+" "+User.LastName,
+                    ResponsibleName = User.FirstName+" "+User.LastName,
                     StatusId = UserStory.StatusId,
                     Status = Status.State,
                     Version = UserStory.Version,
@@ -95,7 +92,6 @@ namespace Assignment.Core.Data.Repositories
                     AcceptanceCriteria = UserStory.AcceptanceCriteria,
                     StoryPoint = UserStory.StoryPoint,
                     Responsible = UserStory.Responsible,
-                    //ResponsibleName = User.FirstName+" "+User.LastName,
                     CreatedBy = UserStory.CreatedBy,
                     CreatedByName = User.FirstName+" "+User.LastName,
                     StatusId = UserStory.StatusId,
@@ -108,7 +104,6 @@ namespace Assignment.Core.Data.Repositories
             return query.ToList();
             }
         }
-
         public IEnumerable<UserStoryDTO> GetUserStory(int CreatedBy)
         {
             using (_context)
@@ -129,12 +124,12 @@ namespace Assignment.Core.Data.Repositories
                     StatusId = UserStory.StatusId,
                     Status = Status.State,
                     Version = UserStory.Version,
-                    Comments = UserStory.Comments
+                    Comments = UserStory.Comments,
+                    AddedOn = UserStory.AddedOn
                 };
  
             return query.ToList();
             }
         }
-        
     }
 }

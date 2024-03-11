@@ -1,29 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserStoryService } from 'src/app/services/user-story.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Tokenresponse } from 'src/app/interface/TokenResponse';
-
+ 
 @Component({
   selector: 'app-user-story-list',
   templateUrl: './user-story-list.component.html',
   styleUrls: ['./user-story-list.component.scss']
 })
 export class UserStoryListComponent implements OnInit {
+
  
   public values:any[] = [];
   public user:any;
-  itemsPerPage = 10;
+  itemsPerPage = 4;
   currentPage = 1;
 
+  searchTerm:string = '';
+
+  id!:number;
  
   responsible:any;
   public showingUser:any;
+
+  createdby:any;
+  query:any;
+  userStorySearch:any;
  
  
  
   constructor(private userStoryService: UserStoryService, private authService:AuthService) { }
  
   ngOnInit(): void {
+    this.createdby = localStorage.getItem('id');
     this.getUserStoryList();
   }
  
@@ -37,10 +45,15 @@ export class UserStoryListComponent implements OnInit {
         this.values = result;
       })
   }
- 
-  
- 
-  
+
+  get filteredValues() 
+  {
+    return this.values.filter(data =>
+      data.responsibleName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      data.description.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      data.status.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
 
   getPages(): number[] {
     const pageCount = Math.ceil(this.values.length / this.itemsPerPage);

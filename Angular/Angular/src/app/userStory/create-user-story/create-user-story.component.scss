@@ -1,92 +1,62 @@
-.register-photo {
-    background:#f1f7fc;
-    padding:80px 0;
+.mat-typography {
+  font-family: 'Roboto', sans-serif;
+  padding: 16px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mat-hint {
+  font-size: 0.625rem;
+  color: rgb(205, 15, 205);
+}
+
+.hint
+{
+  color: rgb(205, 15, 205);
+}
+
+.mat-form-field {
+  width: calc(50% - 10px); /* 50% width for the first row with 10px gap on each side */
+  margin-right: 30px; /* 10px right margin and 10px gap between fields */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+input,
+textarea {
+  width: 100%; /* Full width for input and textarea */
+  font-size: 0.875rem; /* Adjust the font size for input elements */
+}
+
+.text-sm {
+  font-size: 0.75rem;
+  color: #757575;
+}
+
+.mat-dialog-actions {
+  margin-top: 14px;
+}
+
+.mat-hint {
+  font-size: 0.625rem;
+  color: #e57373;
+}
+
+button[mat-button] {
+  margin-right: 8px;
+}
+
+/* Clear the right margin for the last field in each row */
+.mat-form-field:nth-child(1n) {
+  margin-right: 10px;
+}
+
+/* Add media query for responsiveness on smaller screens */
+@media (max-width: 768px) {
+  .mat-form-field {
+    width: 100%;
+    margin-right: 0;
   }
-   
-  .register-photo .image-holder {
-    display:table-cell;
-    width:auto;
-    background:url(https://img.freepik.com/free-vector/personal-site-concept-illustration_114360-3417.jpg);
-    background-size:cover;
-  }
-   
-  .register-photo .form-container {
-    display:table;
-    max-width:1100px;
-    width:90%;
-    margin:0 auto;
-    box-shadow:1px 1px 5px rgba(0,0,0,0.1);
-  }
-   
-  .register-photo form {
-    display:table-cell;
-    width:400px;
-    background-color:#ffffff;
-    padding:40px 60px;
-    color:#505e6c;
-  }
-   
-  @media (max-width:991px) {
-    .register-photo form {
-      padding:40px;
-    }
-  }
-   
-  .register-photo form h2 {
-    font-size:24px;
-    line-height:1.5;
-    margin-bottom:30px;
-  }
-   
-  .register-photo form .form-control {
-    background:#f7f9fc;
-    border:none;
-    border-bottom:1px solid #dfe7f1;
-    border-radius:0;
-    box-shadow:none;
-    outline:none;
-    color:inherit;
-    text-indent:6px;
-    height:40px;
-  }
-   
-  .register-photo form .form-check {
-    font-size:13px;
-    line-height:20px;
-  }
-   
-  .register-photo form .btn-primary {
-    background:#f4476b;
-    border:none;
-    border-radius:4px;
-    padding:11px;
-    box-shadow:none;
-    margin-top:35px;
-    text-shadow:none;
-    outline:none !important;
-  }
-   
-  .register-photo form .btn-primary:hover, .register-photo form .btn-primary:active {
-    background:#eb3b60;
-  }
-   
-  .register-photo form .btn-primary:active {
-    transform:translateY(1px);
-  }
-   
-  .register-photo form .already {
-    display:block;
-    text-align:center;
-    font-size:12px;
-    color:#6f7a85;
-    opacity:0.9;
-    text-decoration:none;
-  }
-   
-  .btn{
-    background-color: #8C42AD;
-  }
-  .text-center
-  {
-    color: #8C42AD;
-  }
+}

@@ -9,17 +9,27 @@
     </a>
  
 <br><br>
+    <div class="dashboard" *ngIf="!this.auth.isloggedIn()">
+      <a mat-button routerLink="/dashboard" >
+        <mat-icon matTooltip="Dashboard">dashboard</mat-icon>
+      </a>
+      
+    </div>
     <div *ngIf="!this.auth.isloggedIn()">
       <a href="#" class="d-flex align-items-center" aria-expanded="false">
-        <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>&nbsp;&nbsp;
+        <a mat-button routerLink="/login" matTooltip="Login" routerLinkActive="mat-accent">Login</a>&nbsp;&nbsp;
       </a>
     </div>
-    <div *ngIf="this.auth.isloggedIn()">
+
+    <div *ngIf="auth.isloggedIn()" class="loggedin d-flex align-items-center">
+      <a mat-button routerLink="/dashboard">
+        <mat-icon matTooltip="Dashboard">dashboard</mat-icon>
+      </a>
+      
       <a href="#" class="d-flex align-items-center" aria-expanded="false">
-        <a mat-button routerLink="/login" (click)="logout()" routerLinkActive="mat-accent">Welcome {{firstname}}&nbsp;&nbsp;{{lastname}} &nbsp;&nbsp;&nbsp;&nbsp; Logout</a>&nbsp;&nbsp;  
+        <a  class="firstname">Welcome {{ firstname }}&nbsp;&nbsp;{{ lastname }}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a mat-button routerLink="/login" (click)="logout()" routerLinkActive="mat-accent">Logout</a>
       </a>
     </div>
- 
   </div>
- 
 </nav>

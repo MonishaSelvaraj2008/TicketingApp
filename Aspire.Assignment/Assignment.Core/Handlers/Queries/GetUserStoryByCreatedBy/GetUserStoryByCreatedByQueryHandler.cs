@@ -29,15 +29,17 @@ namespace Assignment.Core.Handlers.Queries
             if (!string.IsNullOrEmpty(request.Search))
             {
                 userStory = userStory.Where(obj => obj.ResponsibleName.ToString().ToLower().Contains(request.Search.ToLower()) ||
+                                                obj.Id.ToString().ToLower().Contains(request.Search.ToLower()) ||
                                                 obj.Status.ToString().ToLower().Contains(request.Search.ToLower()) ||
                                                 obj.Description.ToString().ToLower().Contains(request.Search.ToLower()) ||
                                                 obj.StoryPoint.ToString().ToLower().Contains(request.Search.ToLower()) ||
                                                 obj.AcceptanceCriteria.ToString().ToLower().Contains(request.Search.ToLower()) ||
-                                                obj.Comments.ToString().ToLower().Contains(request.Search.ToLower()));
- 
+                                                obj.Comments.ToString().ToLower().Contains(request.Search.ToLower()) ||
+                                                obj.AddedOn.ToString().Contains(request.Search.ToLower()));
             }
             return userStory;
  
         }
     }
 }
+

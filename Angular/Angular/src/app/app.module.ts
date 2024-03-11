@@ -23,7 +23,24 @@ import { UpdateBugComponent } from './bug/update-bug/update-bug.component';
 import { ViewUserStoryHistoryComponent } from './userStory/view-user-story-history/view-user-story-history.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ResponsibleTicketsComponent } from './responsible-tickets/responsible-tickets.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +57,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     UserStoryListComponent,
     UserStoryDescriptionComponent,
     UpdateBugComponent,
-    ViewUserStoryHistoryComponent   
+    ViewUserStoryHistoryComponent,
+    ResponsibleTicketsComponent,
    ],
   imports: [
     BrowserModule,
@@ -53,7 +71,23 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RouterModule,
     ToastrModule.forRoot({preventDuplicates: false,}),
     MatTableModule,
-    MatPaginatorModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatListModule,
+    MatSlideToggleModule
   ],
   providers: [ToastrService],
   bootstrap: [AppComponent]

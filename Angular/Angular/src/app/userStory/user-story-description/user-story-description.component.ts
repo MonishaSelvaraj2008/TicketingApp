@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Result } from 'postcss';
 import { UserStoryService } from 'src/app/services/user-story.service';
@@ -12,7 +13,8 @@ export class UserStoryDescriptionComponent implements OnInit {
 
   details:any;
 
-  constructor(private activedRouting: ActivatedRoute, private userStoryService : UserStoryService) { }
+  constructor(private activedRouting: ActivatedRoute, 
+    private userStoryService : UserStoryService) { }
 
   ngOnInit(): void {
     let storyId = this.activedRouting.snapshot.params["id"];
