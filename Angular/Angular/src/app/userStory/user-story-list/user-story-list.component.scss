@@ -27,7 +27,7 @@ table {
 
   .p-6
   {
-    width: 1200px;  
+    width: 1000px;  
   }
   
 
@@ -64,7 +64,8 @@ table {
 }
 .p-2 {
   padding: 0.5rem;
-  width: 400px;
+  width: 420px;
+  font-size: 11px;
 }
 .search-label {
   position: relative;
@@ -74,9 +75,23 @@ table {
 .search-icon {
   position: absolute;
   top: 50%;
-  right: 12px; /* Adjust the right position as needed */
+  right: 12px;
   transform: translateY(-50%);
-  font-size: 20px; /* Adjust the icon size as needed */
-  color: #888; /* Adjust the icon color as needed */
+  font-size: 22px; 
+  color: #888; 
   cursor: pointer;
+}
+.p-6 {
+  width: 800px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+.text-center {
+  text-align: center;
+  font-size: x-small;
 }
