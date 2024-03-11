@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Story List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 
-  
 
-<div class="m-2 max-w-screen-md">
-    <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-lg ">
-      <input type="text" placeholder="Search by Responsible, Description and Status" [(ngModel)]="searchTerm" class="p-2 border rounded-md"><br><br>
+
+  <div class="m-2 max-w-screen-md">
+    <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-lg relative">
+        <label class="search-label">
+            <input type="text" placeholder="Search by Responsible, Description and Status" [(ngModel)]="searchTerm" class="p-2 border rounded-md">
+            <mat-icon class="search-icon">search</mat-icon>
+        </label>
+        <br><br>
         <div *ngIf="values.length > 0; else noUserStories">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -66,3 +66,17 @@ table {
   padding: 0.5rem;
   width: 400px;
 }
+.search-label {
+  position: relative;
+  display: inline-block;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px; /* Adjust the right position as needed */
+  transform: translateY(-50%);
+  font-size: 20px; /* Adjust the icon size as needed */
+  color: #888; /* Adjust the icon color as needed */
+  cursor: pointer;
+}
