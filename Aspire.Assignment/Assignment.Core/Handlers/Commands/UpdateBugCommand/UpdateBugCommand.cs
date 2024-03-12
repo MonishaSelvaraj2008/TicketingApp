@@ -1,0 +1,21 @@
+using MediatR;
+using Assignment.Contracts.Data;
+using Assignment.Contracts.DTO;
+using Assignment.Contracts.Data.Entities;
+using FluentValidation;
+using System.Text.Json;
+using Assignment.Core.Exceptions;
+using Microsoft.AspNetCore.Identity;
+ 
+namespace Assignment.Core.Handlers.Commands
+{
+    public class UpdateBugCommand : IRequest<int>
+    {
+        public UpdateBugDTO? Model { get;}
+ 
+        public UpdateBugCommand(UpdateBugDTO UpdateBugDTO){
+            this.Model = UpdateBugDTO;
+        }
+ 
+    }
+}

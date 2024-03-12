@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import '~ngx-toastr/toastr.css';
+
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('~/src/fonts/Montserrat-Regular.ttf');
+}
+
+html, body { height: 100%; font-family: 'Montserrat' !important; }
+body { margin: 0; }
+
+

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm ">
+ 
+  <div class="container-fluid">
+    <!-- Links -->
+    <a class="navbar-brand mt-2 mt-lg-0" href="#">
+      <img
+        src="https://systems.aspiresys.com/profiles/commons/themes/contrib/Aspire_Assist_BFW/logo.png"height="50" width="90" loading="lazy"
+      />
+    </a>
+ 
+<br><br>
+    <div *ngIf="!this.auth.isloggedIn()">
+      <a href="#" class="d-flex align-items-center" aria-expanded="false">
+        <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>&nbsp;&nbsp;
+      </a>
+    </div>
+    <div *ngIf="this.auth.isloggedIn()">
+      <a href="#" class="d-flex align-items-center" aria-expanded="false">
+        <a mat-button routerLink="/login" (click)="logout()" routerLinkActive="mat-accent">Welcome {{firstname}}&nbsp;&nbsp;{{lastname}} &nbsp;&nbsp;&nbsp;&nbsp; Logout</a>&nbsp;&nbsp;  
+      </a>
+    </div>
+ 
+  </div>
+ 
+</nav>
